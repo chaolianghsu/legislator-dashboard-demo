@@ -1,14 +1,12 @@
 const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
   const colors = ['#46BBFF', '#641EFF', '#18FAE4', '#C9C9C9']
   const total = series[0].data.reduce((sum, d) => sum + d.y, 0)
-
   const options = {
     chart: {
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
       type: 'pie',
-      height: 360,
     },
     colors,
     title: {
@@ -20,11 +18,11 @@ const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
       },
       align: 'center',
       verticalAlign: 'middle',
-      y: 35,
+      y: 10,
     },
     plotOptions: {
       pie: {
-        innerSize: '60%',
+        innerSize: '75%',
         dataLabels: {
           distance: 15,
           style: {
@@ -36,6 +34,7 @@ const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
             return `<b>${Math.round((100 * this.y) / total)}%</b>`
           },
         },
+        showInLegend: true,
       },
       series: {
         states: {
@@ -48,12 +47,6 @@ const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
     tooltip: {
       formatter() {
         return `<b>${this.key}:</b> ${this.point.y.toLocaleString()}<p>人</p>`
-      },
-    },
-    legend: {
-      itemStyle: {
-        fontSize: '16px',
-        color: '#585858',
       },
     },
     accessibility: {
