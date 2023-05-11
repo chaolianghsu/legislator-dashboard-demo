@@ -1,5 +1,5 @@
 import {
-  LineChart, BarChart, ColChart, RadarChart, WordCloudChart, DataGrid,
+  LineChart, BarChart, ColChart, RadarChart, WordCloudChart, DataGrid, PieChart,
 } from '@/components'
 import { Box } from '@mui/material'
 import Discuss from '@/containers/discuss'
@@ -365,6 +365,22 @@ const columns = [
   },
 ]
 
+const fakePieSeries = [{
+  data: [{
+    name: '首投族（20-24歲）',
+    y: 3334,
+  }, {
+    name: '壯年族 （25-40歲）',
+    y: 300,
+  }, {
+    name: '中年族（40-64歲）',
+    y: 203,
+  }, {
+    name: '老年族（65歲以上）',
+    y: 87,
+  }],
+}]
+
 function Demo() {
   return (
     <Box sx={{ height: '500vh' }}>
@@ -411,6 +427,9 @@ function Demo() {
       </Box>
       <br />
       <Discuss />
+      <PieChart
+        series={fakePieSeries}
+      />
     </Box>
   )
 }
