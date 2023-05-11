@@ -3,7 +3,16 @@ import {
 } from 'react-router-dom'
 import { DashboardLayout } from '@/layouts'
 import {
-  Reputation, Prediction, Demo, Favorability, Volume, Spread, Login, TextList, HotKeyword,
+  Reputation,
+  Prediction,
+  Demo,
+  Favorability,
+  Volume,
+  Spread,
+  Login,
+  TextList,
+  HotKeyword,
+  TestComponents,
 } from '@/pages'
 
 import PrivateRoutes from './PrivateRoutes'
@@ -25,6 +34,7 @@ function Routers() {
               <Route path="textlist" element={<TextList />} />
               <Route path="hotkeyword" element={<HotKeyword />} />
             </Route>
+            <Route path="test-components" element={<TestComponents />} />
             <Route path="*" element={<Navigate to="/prediction" />} />
           </Route>
         </Route>
