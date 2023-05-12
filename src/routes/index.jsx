@@ -12,6 +12,7 @@ import {
   Login,
   TextList,
   HotKeyword,
+  IndecisionIndex,
 } from '@/pages'
 
 import PrivateRoutes from './PrivateRoutes'
@@ -32,6 +33,9 @@ function Routers() {
               <Route path="favorability" element={<Favorability />} />
               <Route path="textlist" element={<TextList />} />
               <Route path="hotkeyword" element={<HotKeyword />} />
+            </Route>
+            <Route path="competition">
+              <Route path="indecision-index" element={<IndecisionIndex />} />
             </Route>
             <Route path="*" element={<Navigate to="/prediction" />} />
           </Route>
