@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import genStackedBarChartOption from './genStackedBarChartOption'
 
-const StackBarChartGroupPropTypes = {
+const StackedBarChartGroupPropTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.nodes]),
   series: PropTypes.arrayOf(
     PropTypes.shape({
@@ -18,7 +18,7 @@ const StackBarChartGroupPropTypes = {
   chartContainerProps: PropTypes.shape({}),
 }
 
-function StackBarChartGroup({
+function StackedBarChartGroup({
   title = '', series = [
     {
       data: [40],
@@ -58,6 +58,6 @@ function StackBarChartGroup({
   )
 }
 
-StackBarChartGroup.propTypes = StackBarChartGroupPropTypes
+StackedBarChartGroup.propTypes = StackedBarChartGroupPropTypes
 
-export default StackBarChartGroup
+export default StackedBarChartGroup
