@@ -17,12 +17,14 @@ const BarChartPropTypes = {
     }),
   ),
   chartContainerProps: PropTypes.shape({}),
+  chartOptionOverrides: PropTypes.shape({}),
 }
 
 function BarChart({
   categories,
   series,
   chartContainerProps,
+  chartOptionOverrides,
 }) {
   return (
     <Box {...chartContainerProps}>
@@ -31,6 +33,7 @@ function BarChart({
         options={genBarChartOption({
           categories,
           series,
+          chartOptionOverrides,
         })}
       />
     </Box>

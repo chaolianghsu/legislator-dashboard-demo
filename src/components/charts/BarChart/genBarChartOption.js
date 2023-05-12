@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-len
 // colors ['#8E9EE3', '#1BFBE4', '#FD8373', '#8b0707', '#8B46BD', '#aaaa11', '#22aa99', '#853785', '#66aa00', '#8A7F7D', '#d24675', '#D38A1B', '#42A881', '#D98179', '#008972']
 
-const genBarChartOption = ({ categories, series }) => ({
+const genBarChartOption = ({ categories, series, chartOptionOverrides = {} }) => ({
   chart: {
     type: 'bar',
     height: 400,
@@ -49,6 +49,7 @@ const genBarChartOption = ({ categories, series }) => ({
       return `${this.key}<br/>筆數: <b>${this.y.toLocaleString()}</b>`
     },
   },
+  ...chartOptionOverrides,
 })
 
 export default genBarChartOption
