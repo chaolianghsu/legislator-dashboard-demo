@@ -1,5 +1,12 @@
 import {
-  LineChart, BarChart, ColChart, RadarChart, WordCloudChart, DataGrid,
+  LineChart,
+  BarChart,
+  ColChart,
+  RadarChart,
+  WordCloudChart,
+  DataGrid,
+  PieChart,
+  StackedBarChartGroup,
 } from '@/components'
 import { Box } from '@mui/material'
 import Discuss from '@/containers/discuss'
@@ -358,10 +365,40 @@ const randomRows = [...new Array(10)].map(() => ({
 
 const columns = [
   {
-    field: 'col1', headerName: 'Column 1', width: 150, sortable: false, flex: 1,
+    field: 'col1',
+    headerName: 'Column 1',
+    width: 150,
+    sortable: false,
+    flex: 1,
   },
   {
-    field: 'col2', headerName: 'Column 2', width: 150, sortable: false,
+    field: 'col2',
+    headerName: 'Column 2',
+    width: 150,
+    sortable: false,
+  },
+]
+
+const fakePieSeries = [
+  {
+    data: [
+      {
+        name: '首投族（20-24歲）',
+        y: 3334,
+      },
+      {
+        name: '壯年族 （25-40歲）',
+        y: 300,
+      },
+      {
+        name: '中年族（40-64歲）',
+        y: 203,
+      },
+      {
+        name: '老年族（65歲以上）',
+        y: 87,
+      },
+    ],
   },
 ]
 
@@ -397,20 +434,50 @@ function Demo() {
       />
       <RadarChart
         categories={['大心', '哈', '哇', '嗚', '怒']}
-        series={[{
-          name: '',
-          data: [14, 20, 133, 30, 52],
-        }]}
+        series={[
+          {
+            name: '',
+            data: [14, 20, 133, 30, 52],
+          },
+        ]}
       />
-      <WordCloudChart data={fakeWordCloud.map((d) => ({ name: d.name, weight: d.value }))} />
-      <Box sx={{
-        height: '50rem', width: '100%', backgroundColor: 'customWhite.main', padding: '1rem',
-      }}
+      <WordCloudChart
+        data={fakeWordCloud.map((d) => ({ name: d.name, weight: d.value }))}
+      />
+      <Box
+        sx={{
+          height: '50rem',
+          width: '100%',
+          backgroundColor: 'customWhite.main',
+          padding: '1rem',
+        }}
       >
-        <DataGrid rows={randomRows} columns={columns} disableSelectionOnClick hideFooter />
+        <DataGrid
+          rows={randomRows}
+          columns={columns}
+          disableSelectionOnClick
+          hideFooter
+        />
       </Box>
       <br />
       <Discuss />
+      <PieChart
+        series={fakePieSeries}
+      />
+      <StackedBarChartGroup
+        title="網路聲量"
+        series={[
+          {
+            data: [40],
+            name: '2',
+            color: '#0079BF',
+          },
+          {
+            data: [60],
+            name: '1',
+            color: '#46BBFF',
+          }]}
+      />
     </Box>
   )
 }
