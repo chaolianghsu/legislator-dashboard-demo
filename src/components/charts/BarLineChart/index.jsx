@@ -3,9 +3,9 @@ import HighchartsReact from 'highcharts-react-official'
 import { Box } from '@mui/material'
 import PropTypes from 'prop-types'
 
-import genBarChartOption from './genBarLineChartOption'
+import genBarLineChartOption from './genBarLineChartOption'
 
-const BarChartPropTypes = {
+const BarLineChartPropTypes = {
   categories: PropTypes.arrayOf(PropTypes.string),
   series: PropTypes.arrayOf(
     PropTypes.shape({
@@ -19,7 +19,7 @@ const BarChartPropTypes = {
   chartContainerProps: PropTypes.shape({}),
 }
 
-function BarChart({
+function BarLineChart({
   categories,
   series,
   chartContainerProps,
@@ -28,7 +28,7 @@ function BarChart({
     <Box {...chartContainerProps}>
       <HighchartsReact
         highcharts={Highcharts}
-        options={genBarChartOption({
+        options={genBarLineChartOption({
           categories,
           series,
         })}
@@ -37,6 +37,6 @@ function BarChart({
   )
 }
 
-BarChart.propTypes = BarChartPropTypes
+BarLineChart.propTypes = BarLineChartPropTypes
 
-export default BarChart
+export default BarLineChart
