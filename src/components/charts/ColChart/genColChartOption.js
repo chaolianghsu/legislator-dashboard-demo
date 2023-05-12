@@ -1,6 +1,6 @@
 // ['#8E9EE3', '#1BFBE4', '#934DFC']
 
-const genColChartOption = ({ series }) => (
+const genColChartOption = ({ series, chartOptionOverrides = {} }) => (
   {
     chart: {
       type: 'column',
@@ -31,6 +31,7 @@ const genColChartOption = ({ series }) => (
         return `${this.key}<br/>筆數: <b>${this.y.toLocaleString()}</b>`
       },
     },
+    ...chartOptionOverrides,
   }
 )
 
