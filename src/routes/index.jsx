@@ -12,7 +12,6 @@ import {
   Login,
   TextList,
   HotKeyword,
-  TestComponents,
 } from '@/pages'
 
 import PrivateRoutes from './PrivateRoutes'
@@ -34,7 +33,6 @@ function Routers() {
               <Route path="textlist" element={<TextList />} />
               <Route path="hotkeyword" element={<HotKeyword />} />
             </Route>
-            <Route path="test-components" element={<TestComponents />} />
             <Route path="*" element={<Navigate to="/prediction" />} />
           </Route>
         </Route>
