@@ -10,7 +10,7 @@ const indecisionPalette = {
 
 const swing = '極度搖擺'
 
-function FirstSection() {
+function IndecisionIndexSectionOne() {
   return (
     <Card>
       <Stack direction={{ xs: 'column', lg: 'row' }} spacing={{ xs: 8, lg: 0 }}>
@@ -100,6 +100,6 @@ function FirstSection() {
   )
 }
 
-FirstSection.propTypes = {}
+IndecisionIndexSectionOne.propTypes = {}
 
-export default FirstSection
+export default IndecisionIndexSectionOne
