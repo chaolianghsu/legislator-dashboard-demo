@@ -3,7 +3,15 @@ import {
 } from 'react-router-dom'
 import { DashboardLayout } from '@/layouts'
 import {
-  Reputation, Prediction, Demo, Favorability, Volume, Spread, Login, TextList, HotKeyword,
+  Reputation,
+  Prediction,
+  Demo,
+  Favorability,
+  Volume,
+  Spread,
+  Login,
+  TextList,
+  HotKeyword,
 } from '@/pages'
 
 import PrivateRoutes from './PrivateRoutes'

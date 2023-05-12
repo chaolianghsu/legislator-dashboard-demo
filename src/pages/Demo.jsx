@@ -2,6 +2,7 @@ import {
   LineChart, BarChart, ColChart, RadarChart, WordCloudChart, DataGrid,
 } from '@/components'
 import { Box } from '@mui/material'
+import Discuss from '@/containers/discuss'
 
 const fakeData = {
   date: [
@@ -408,6 +409,8 @@ function Demo() {
       >
         <DataGrid rows={randomRows} columns={columns} disableSelectionOnClick hideFooter />
       </Box>
+      <br />
+      <Discuss />
     </Box>
   )
 }

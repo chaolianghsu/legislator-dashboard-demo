@@ -12,6 +12,7 @@ const descriptionConfigs = {
   粉絲觸及力: '估計粉專經常互動的人數。',
   社群互動力: '按讚數、留言數及分享數的加總，數值越高表示互動程度越高。',
   平均互動力: '平均每位經常互動者會有多少互動數。',
+  政策討論度: '近三個月(2022Q2)該選區在各項公共議題的網路聲量及網路好感程度。',
 }
 function TitleData({
   title, value = 8810, markNumber, unit = '', TitleStackProps,
