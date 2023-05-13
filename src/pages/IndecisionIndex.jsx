@@ -4,7 +4,11 @@ import RecentActorsIcon from '@mui/icons-material/RecentActors'
 import ReplyIcon from '@mui/icons-material/Reply'
 
 import { HeaderBar, BlueButton } from '@/components'
-import { IndecisionIndexSectionOne, IndecisionIndexSectionTwo } from '@/containers/indecisionIndex'
+import {
+  IndecisionIndexSectionOne,
+  IndecisionIndexSectionTwo,
+  IndecisionIndexSectionThree,
+} from '@/containers/indecisionIndex'
 
 function IndecisionIndex() {
   const navigate = useNavigate()
@@ -27,6 +31,7 @@ function IndecisionIndex() {
       />
       <IndecisionIndexSectionOne />
       <IndecisionIndexSectionTwo />
+      <IndecisionIndexSectionThree />
     </Stack>
   )
 }
