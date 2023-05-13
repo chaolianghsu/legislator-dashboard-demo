@@ -2,12 +2,7 @@ import { Box, Stack, Typography } from '@mui/material'
 
 import { Card, TitleData, BarChart } from '@/components'
 
-const indecisionPalette = {
-  極度搖擺: '#CE0000',
-  不搖擺: '#C6C6C6',
-  中度搖擺: '#F79116',
-  輕度搖擺: '#D8C644',
-}
+import { indecisionPalette } from '@/utils'
 
 const swing = '極度搖擺'
 
