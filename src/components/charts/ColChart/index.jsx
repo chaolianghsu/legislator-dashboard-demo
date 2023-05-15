@@ -17,12 +17,14 @@ const ColChartPropTypes = {
     }),
   ),
   chartContainerProps: PropTypes.shape({}),
+  chartOptionOverrides: PropTypes.shape({}),
 }
 
 function ColChart({
   categories,
   series,
   chartContainerProps,
+  chartOptionOverrides,
 }) {
   return (
     <Box {...chartContainerProps}>
@@ -31,6 +33,7 @@ function ColChart({
         options={genColChartOption({
           categories,
           series,
+          chartOptionOverrides,
         })}
       />
     </Box>
