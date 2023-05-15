@@ -15,11 +15,15 @@ const StackedBarChartGroupPropTypes = {
       ),
     }),
   ),
+  details: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.number]),
+  ),
   chartContainerProps: PropTypes.shape({}),
 }
 
 function StackedBarChartGroup({
-  title = '', series = [
+  title = '',
+  series = [
     {
       data: [40],
       name: '2',
@@ -29,14 +33,26 @@ function StackedBarChartGroup({
       data: [60],
       name: '1',
       color: '#46BBFF',
-    }], chartContainerProps = {},
+    },
+  ],
+  details = [],
+  chartContainerProps = {},
 }) {
   return (
-    <Box {...chartContainerProps}>
+    <Box
+      {...chartContainerProps}
+      sx={{ position: 'relative', ...chartContainerProps.sx }}
+    >
       <Stack
         direction="row"
         justifyContent="space-between"
-        sx={{ px: '1rem', marginBottom: '-2rem', marginTop: '1rem' }}
+        sx={{
+          px: '1rem',
+          marginBottom: '-2.5rem',
+          marginTop: '1rem',
+          zIndex: 10,
+          position: 'relative',
+        }}
       >
         <Typography variant="body1" sx={{ color: '#46BBFF', fontSize: '2rem' }}>
           {series[1].data[0]}
@@ -54,6 +70,33 @@ function StackedBarChartGroup({
           series,
         })}
       />
+      {details && (
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          sx={{
+            px: '1rem',
+            marginTop: '-2.5rem',
+            marginBottom: '1rem',
+            fontSize: '1.6rem',
+          }}
+        >
+          {typeof details[0] === 'object' ? (
+            details[0]
+          ) : (
+            <Typography variant="body1" sx={{ color: '#46BBFF' }}>
+              {details[0]}
+            </Typography>
+          )}
+          {typeof details[1] === 'object' ? (
+            details[1]
+          ) : (
+            <Typography variant="body1" sx={{ color: '#0079BF' }}>
+              {details[1]}
+            </Typography>
+          )}
+        </Stack>
+      )}
     </Box>
   )
 }
