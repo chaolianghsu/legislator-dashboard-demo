@@ -13,9 +13,18 @@ const descriptionConfigs = {
   社群互動力: '按讚數、留言數及分享數的加總，數值越高表示互動程度越高。',
   平均互動力: '平均每位經常互動者會有多少互動數。',
   政策討論度: '近三個月(2022Q2)該選區在各項公共議題的網路聲量及網路好感程度。',
+  異色搖擺選票: '扣除各競爭政黨的鐵票後，剩餘的選票。',
+  歷史搖擺程度: '過去四屆該縣市轉投不同政黨的機率。',
+  預估投票人數: '該選區20歲以上人數乘以過去四屆平均投票率。',
+  上屆選舉人數: '該選區上屆選舉20歲以上人數。',
+  平均投票率: '該選區過去四屆平均投票率。',
+  同色搖擺選票: '最高得票數扣除最低得票數，尚可努力爭取之選票數。',
+  政黨最低得票數: '政黨在四次選舉中的最低獲得選票數。,',
+  政黨優勢: '在這個地區平均比其他黨多拿到的選票。',
 }
+
 function TitleData({
-  title, value = 8810, markNumber, unit = '', TitleStackProps,
+  title, value = 8810, markNumber, unit = '', TitleStackProps, customValue, valueTypographyProps = {},
 }) {
   // 單位
   const unitTypesMap = {
@@ -40,6 +49,7 @@ function TitleData({
     channels: <Typography sx={{ marginLeft: '1rem' }}>頻道數</Typography>,
     piece: <Typography sx={{ marginLeft: '1rem' }}>則</Typography>,
     people: <Typography sx={{ marginLeft: '1rem' }}>人</Typography>,
+    ticket: <Typography sx={{ marginLeft: '1rem' }}>票</Typography>,
   }
 
   return (
@@ -54,16 +64,23 @@ function TitleData({
         >
           {title}
         </Typography>
-        <Typography
-          variant="h4"
-          sx={{
-            color: 'customPurple.main',
-            fontSize: '3rem',
-          }}
-        >
-          {value}
-        </Typography>
-        {unitTypesMap[unit]}
+        {customValue ?? (
+        <>
+          <Typography
+            variant="h4"
+            {...valueTypographyProps}
+            sx={{
+              color: 'customPurple.main',
+              fontSize: '3rem',
+              ...(valueTypographyProps?.sx || {}),
+            }}
+          >
+            {value}
+          </Typography>
+          {unitTypesMap[unit]}
+        </>
+        )}
+
       </Stack>
       <Typography variant="body1" sx={{ color: 'customGray.light', fontSize: '1.5rem' }}>
         {descriptionConfigs[title]}
@@ -78,6 +95,8 @@ TitleData.propTypes = {
   title: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   TitleStackProps: PropTypes.shape({}),
+  customValue: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  valueTypographyProps: PropTypes.node,
 }
 
 export default TitleData
