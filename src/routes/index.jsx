@@ -13,6 +13,7 @@ import {
   TextList,
   HotKeyword,
   IndecisionIndex,
+  ElectoralDistrictCompetition,
 } from '@/pages'
 
 import PrivateRoutes from './PrivateRoutes'
@@ -36,6 +37,7 @@ function Routers() {
             </Route>
             <Route path="competition">
               <Route path="indecision-index" element={<IndecisionIndex />} />
+              <Route path="electoral-district-competition" element={<ElectoralDistrictCompetition />} />
             </Route>
             <Route path="*" element={<Navigate to="/prediction" />} />
           </Route>
