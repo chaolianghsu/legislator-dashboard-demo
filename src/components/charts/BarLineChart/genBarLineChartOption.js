@@ -42,6 +42,9 @@ const genBarLineChartOption = ({ categories = ['cate1', 'cate2', 'cate3'], lineD
       },
     },
   ],
+  credits: {
+    enabled: false,
+  },
   series: [
     {
       name: '聲量',
