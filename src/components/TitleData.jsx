@@ -3,7 +3,7 @@ import { Stack, Typography } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
-const descriptionConfigs = {
+export const descriptionConfigs = {
   聲譽值: '綜合評量網路聲量與好感度，數值越高代表聲譽越佳。',
   網路聲量: '網路上提及自己討論數，筆數越多表示討論度越高。',
   好感度: '網路上的好感程度，正評越多且負評越少，好感度越高。',
@@ -21,6 +21,7 @@ const descriptionConfigs = {
   同色搖擺選票: '最高得票數扣除最低得票數，尚可努力爭取之選票數。',
   政黨最低得票數: '政黨在四次選舉中的最低獲得選票數。,',
   政黨優勢: '在這個地區平均比其他黨多拿到的選票。',
+  選區競爭: '自己與競爭對手在各項指標的優劣勢情形。',
 }
 
 function TitleData({
