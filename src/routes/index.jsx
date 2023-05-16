@@ -13,6 +13,8 @@ import {
   TextList,
   HotKeyword,
   IndecisionIndex,
+  Competition,
+  Discuss,
   ElectoralDistrictCompetition,
 } from '@/pages'
 
@@ -36,7 +38,9 @@ function Routers() {
               <Route path="hotkeyword" element={<HotKeyword />} />
             </Route>
             <Route path="competition">
+              <Route index element={<Competition />} />
               <Route path="indecision-index" element={<IndecisionIndex />} />
+              <Route path="discuss" element={<Discuss />} />
               <Route path="electoral-district-competition" element={<ElectoralDistrictCompetition />} />
             </Route>
             <Route path="*" element={<Navigate to="/prediction" />} />
