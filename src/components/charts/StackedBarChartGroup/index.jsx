@@ -35,7 +35,7 @@ function StackedBarChartGroup({
       color: '#46BBFF',
     },
   ],
-  details = [],
+  details = null,
   chartContainerProps = {},
 }) {
   return (
