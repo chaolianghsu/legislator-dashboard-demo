@@ -1,8 +1,9 @@
 import {
-  Stack, Card, CardContent, Typography, Avatar,
+  Stack, Card, CardContent, Typography, Avatar, Box,
 } from '@mui/material'
 import { TitleData } from '@/components'
 import haha from '@/assets/haha.png'
+import Candidates from './Candidates'
 
 function RowOne() {
   return (
@@ -14,7 +15,14 @@ function RowOne() {
       // justifyContent="space-between"
       spacing={3}
     >
-      <Stack spacing={3}>
+      <Stack
+        spacing={3}
+        direction={{
+          xs: 'column',
+          sm: 'row',
+          md: 'column',
+        }}
+      >
         <Card>
           <CardContent>
             <Stack
@@ -46,6 +54,9 @@ function RowOne() {
           </CardContent>
         </Card>
       </Stack>
+      <Box sx={{ flexGrow: 1 }}>
+        <Candidates />
+      </Box>
     </Stack>
   )
 }
