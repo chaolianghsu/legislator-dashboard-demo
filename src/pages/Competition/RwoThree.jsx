@@ -57,7 +57,7 @@ function RowThree() {
               variant="body2"
               sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
             >
-              該選區選民的各項人口統計資料。統計時間：2023。
+              該選區選民的各項人口統計資料。
             </Typography>
           </Stack>
         )}
@@ -85,7 +85,7 @@ function RowThree() {
               variant="body2"
               sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
             >
-              過去4屆臺北市長選舉結果。
+              過去4屆立委選舉結果。
             </Typography>
           </Stack>
         )}
@@ -94,19 +94,19 @@ function RowThree() {
           series={[
             {
               name: '國民黨',
-              data: [1, 2, 4],
+              data: [1, 2, 4, 11],
             },
             {
               name: '民進黨',
-              data: [3, 2, 1],
+              data: [3, 2, 1, 10],
             },
             {
               name: '民眾黨',
-              data: [10, 10, 10],
+              data: [10, 10, 10, 9],
             },
             {
               name: '無籍黨',
-              data: [10, 10, 10],
+              data: [10, 10, 10, 2],
             },
           ]}
           chartOptionOverrides={{
@@ -123,6 +123,15 @@ function RowThree() {
               title: {
                 text: '得票率',
               },
+            },
+            xAxis: {
+              type: 'category',
+              categories: [
+                2008,
+                2012,
+                2016,
+                2020,
+              ],
             },
           }}
         />
