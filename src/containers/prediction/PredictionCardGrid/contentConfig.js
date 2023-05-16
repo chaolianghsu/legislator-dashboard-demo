@@ -1,3 +1,5 @@
+import AdvantageIcon from '@/assets/icons/advantage.png'
+import IndecisionIcon from '@/assets/icons/indecision.png'
 import VolumeIcon from '@/assets/icons/volume.png'
 import EngagementIcon from '@/assets/icons/engagement.png'
 import FavorabilityIcon from '@/assets/icons/favorability.png'
@@ -7,6 +9,14 @@ import ReputationIcon from '@/assets/icons/reputation.png'
 import SpreadIcon from '@/assets/icons/spread.png'
 
 const contentConfig = [
+  {
+    title: '政黨優勢',
+    description: '本政黨在這個地區平均比其他黨多拿到的選票。',
+    imgSrc: AdvantageIcon,
+    linkTo: '/competition/indecision-index',
+    unit: '',
+    indName: 'superior_vote',
+  },
   {
     title: '網路聲量',
     description: '網路討論數，筆數越多代表聲量越高。',
@@ -31,6 +41,13 @@ const contentConfig = [
     linkTo: '/reputation/favorability',
     unit: '',
     indName: 'favorability',
+  }, {
+    title: '選區搖擺率',
+    description: '過去四屆該縣市轉投不同政黨的機率。',
+    imgSrc: IndecisionIcon,
+    linkTo: '/competition/indecision-index',
+    unit: '%',
+    indName: 'swing',
   }, {
     title: '社群互動力',
     description: '評量發文數、按讚數、留言數及分享數，數值越高表示該週互動度越高。',

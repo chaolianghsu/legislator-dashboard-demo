@@ -16,7 +16,7 @@ function PredictionCardGrid({ data }) {
         ...item,
         subTitle: (
           <>
-            {data[item.indName].total ?? data[item.indName]}
+            {data[item.indName].total?.toLocaleString() ?? data[item.indName]?.toLocaleString()}
             <Typography variant="body1" sx={{ marginLeft: '0.5rem' }}>
               {item.unit}
             </Typography>
