@@ -1,22 +1,26 @@
-import { Card, CardHeader, CardContent } from '@mui/material'
+import {
+  Card, CardHeader, CardContent, Box,
+} from '@mui/material'
 import { BarLineChart, TitleData } from '@/components'
 
-function Discuss() {
+function DiscussContainer() {
   return (
-    <Card>
-      <CardHeader title={(
-        <TitleData
-          title="政策討論度"
-        />
+    <Box padding={1.5}>
+      <Card>
+        <CardHeader title={(
+          <TitleData
+            title="政策討論度"
+          />
   )}
-      />
-      <CardContent>
-        <BarLineChart />
-      </CardContent>
-    </Card>
+        />
+        <CardContent>
+          <BarLineChart />
+        </CardContent>
+      </Card>
+    </Box>
   )
 }
 
-Discuss.propTypes = {}
+DiscussContainer.propTypes = {}
 
-export default Discuss
+export default DiscussContainer
