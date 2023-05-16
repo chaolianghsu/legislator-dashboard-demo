@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import {
-  Card, Stack, Avatar, Typography, Select, MenuItem, Tooltip, CardHeader,
+  Card, Stack, Avatar, Typography, Select, MenuItem, Tooltip, CardHeader, CardActions,
 } from '@mui/material'
-import { TitleData, StackedBarChartGroup } from '@/components'
+import { TitleData, StackedBarChartGroup, DetailButton } from '@/components'
 import { districtData, competitionData } from '@/containers/electoralDistrictCompetition/data'
 import InfoIcon from '@mui/icons-material/Info'
 import { descriptionConfigs } from '@/components/TitleData'
+import { useNavigate } from 'react-router-dom'
 
 function Candidates() {
+  const navigate = useNavigate()
+
   const { politician, opponents } = districtData
   const [opponent, setOpponent] = useState(opponents[0].name)
   return (
@@ -108,6 +111,14 @@ function Candidates() {
           ))}
         </Stack>
       </Stack>
+      <CardActions>
+        <DetailButton
+          onClick={() => navigate('/competition/electoral-district-competition')}
+          sx={{ marginTop: 'auto' }}
+        >
+          詳細資料
+        </DetailButton>
+      </CardActions>
     </Card>
   )
 }
