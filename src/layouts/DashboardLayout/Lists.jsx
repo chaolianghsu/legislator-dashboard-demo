@@ -4,6 +4,7 @@ import {
 import { Link, useLocation } from 'react-router-dom'
 import TrackChangesIcon from '@mui/icons-material/TrackChanges'
 import EqualizerIcon from '@mui/icons-material/Equalizer'
+import RecentActorsIcon from '@mui/icons-material/RecentActors'
 
 const CustomItemText = styled(ListItemText)({
   textAlign: 'center',
@@ -29,6 +30,11 @@ export const navItems = [
     id: 'reputation',
     label: '聲譽模組',
     getIcon: (color) => <EqualizerIcon sx={{ fontSize: 65, color }} />,
+  },
+  {
+    id: 'competition',
+    label: '競爭模組',
+    getIcon: (color) => <RecentActorsIcon sx={{ fontSize: 65, color }} />,
   },
   {
     id: 'demo',
