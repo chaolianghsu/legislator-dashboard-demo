@@ -1,9 +1,12 @@
 import {
   Stack, Typography, CardActions, Card as MuiCard, CardHeader,
 } from '@mui/material'
+import { xlsxsAPI } from '@/apis'
+import { useMutation } from '@tanstack/react-query'
 import {
   Card, PieChart, DetailButton, ColChart,
 } from '@/components'
+import { downloadFile } from '@/utils'
 
 const fakePieSeries = [
   {
@@ -29,6 +32,15 @@ const fakePieSeries = [
 ]
 
 function RowThree() {
+  const { mutate } = useMutation({
+    mutationFn: (data) => xlsxsAPI.download({ area: data }),
+    onSuccess: (res) => {
+      downloadFile({
+        blob: res,
+      })
+    },
+  })
+
   return (
     <Stack
       spacing={3}
@@ -65,6 +77,7 @@ function RowThree() {
         <PieChart series={fakePieSeries} />
         <CardActions>
           <DetailButton
+            onClick={() => { mutate('台北市') }}
             sx={{ marginRight: '2rem', width: '180px' }}
           >
             下載人口統計資料
