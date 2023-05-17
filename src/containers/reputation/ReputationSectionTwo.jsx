@@ -11,8 +11,8 @@ import {
   Card,
   TitleData,
   DetailButton,
-  WordCloudChart,
   LoadingProgress,
+  MultipleStackedBarChart,
 } from '@/components'
 import { useGlobalDateStore } from '@/store'
 import {
@@ -190,42 +190,30 @@ function ReputationSectionTwo() {
             display: 'flex',
             flexDirection: 'column',
           }}
-          CardContentProps={{
+          chartContainerProps={{
             sx: {
-              flex: 1,
-              maxHeight: '70rem',
+              marginTop: '2rem',
             },
           }}
           title={(
             <Stack spacing={1}>
-              <Typography variant="h4">熱門關鍵字文字雲</Typography>
+              <Typography variant="h4">關鍵領袖</Typography>
               <Typography
                 variant="body2"
                 sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
               >
-                熱門關鍵字詞，字詞越大代表越熱。
+                關鍵領袖的subtitle
               </Typography>
             </Stack>
           )}
         >
-          <Stack margin={1.5} sx={{ width: '100%', height: '100%' }}>
-            <WordCloudChart
-              data={wordCloudData.map((d) => ({
-                name: d.name,
-                weight: d.value,
-              }))}
-              chartContainerProps={{
-                sx: {
-                  flex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                },
-              }}
-            />
+          <Stack>
+            <Box sx={{ maxHeight: '665px', overflow: 'auto' }}>
+              <MultipleStackedBarChart />
+            </Box>
             <DetailButton
-              onClick={() => navigate('/reputation/hotkeyword')}
-              sx={{ marginRight: '2rem', marginBottom: '2.5rem' }}
+              onClick={() => navigate('/reputation/keyleader')}
+              sx={{ marginRight: '2rem', marginBottom: '1.5rem', marginTop: '3rem' }}
             >
               詳細資料
             </DetailButton>

@@ -1,0 +1,149 @@
+import Highcharts from 'highcharts'
+
+const genMultipleStackedBarChartOption = (() => ({
+  chart: {
+    type: 'bar',
+    height: 900,
+  },
+  title: {
+    text: '',
+  },
+  xAxis: {
+    type: 'category',
+    title: {
+      text: '',
+    },
+    labels: {
+      style: {
+        fontSize: '13px',
+      },
+    },
+    categories: ['2020/21', '2019/20', '2018/19', '2017/18', '2016/17', '2020/21', '2019/20', '2018/19', '2017/18', '2016/17', '2020/21', '2019/20', '2018/19', '2017/18', '2016/17', '2020/21', '2019/20', '2018/19', '2017/18', '2016/17', '2017/18'],
+    min: 0,
+    scrollbar: {
+      enabled: true,
+    },
+    tickLength: 5,
+
+  },
+  yAxis: {
+    title: {
+      text: '',
+    },
+  },
+  legend: {
+    symbolWidth: 10,
+    symbolHeight: 10,
+    symbolRadius: 3,
+  },
+  tooltip: {
+    useHTML: true,
+    headerFormat: '<small>{point.key}</small><table>',
+    valueDecimals: 0,
+    formatter() {
+      return `<small>${this.key}</small><table>:<br/>${this.series.name} : ${Highcharts.numberFormat(this.y, 0, '.', ',')}` // Format the value with a thousand separator
+    },
+  },
+  credits: {
+    enabled: false,
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      dataLabels: {
+        enabled: true,
+        formatter() {
+          return Highcharts.numberFormat(this.y, 0, '.', ',') // Format number with comma as thousand separator
+        },
+      },
+    },
+  },
+  series: [
+    {
+      name: '被按讚次數',
+      color: 'rgb(27, 251, 228)',
+      legendIndex: 2,
+      data: [
+        13542,
+        9378,
+        8758,
+        7985,
+        7890,
+        7166,
+        6807,
+        5263,
+        5374,
+        1866,
+        4270,
+        4108,
+        4357,
+        3367,
+        2870,
+        1746,
+        2502,
+        3075,
+        2964,
+        2826,
+        2775,
+      ],
+    },
+    {
+      name: '被回文數',
+      color: 'rgb(142, 158, 227)',
+      legendIndex: 1,
+      data: [
+        1786,
+        200,
+        606,
+        1048,
+        476,
+        1168,
+        1457,
+        1223,
+        284,
+        3075,
+        654,
+        402,
+        124,
+        288,
+        779,
+        1771,
+        992,
+        334,
+        296,
+        267,
+        80,
+      ],
+    },
+    {
+      name: '發表次數',
+      color: 'rgb(100, 177, 228)',
+      legendIndex: 0,
+      data: [
+        2,
+        2,
+        1,
+        6,
+        1,
+        2,
+        3,
+        10,
+        2,
+        2,
+        1,
+        6,
+        1,
+        1,
+        4,
+        2,
+        1,
+        1,
+        2,
+        3,
+        2,
+      ],
+    },
+  ],
+}))
+
+export default genMultipleStackedBarChartOption
