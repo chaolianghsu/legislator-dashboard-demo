@@ -18,7 +18,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import MenuIcon from '@mui/icons-material/Menu'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 import dateFormat from 'dateformat'
-import { addDays, startOfWeek, endOfWeek } from 'date-fns'
+import { addDays, addWeeks, addMonths } from 'date-fns'
 import { zhTW } from 'react-date-range/src/locale'
 import { createStaticRanges } from 'react-date-range'
 import { shallow } from 'zustand/shallow'
@@ -57,28 +57,28 @@ function AppBar({
     {
       label: '一週內',
       range: () => ({
-        startDate: startOfWeek(new Date()),
-        endDate: endOfWeek(new Date()),
-      }),
-    },
-    {
-      label: '上一週',
-      range: () => ({
-        startDate: startOfWeek(addDays(new Date(), -7)),
-        endDate: endOfWeek(addDays(new Date(), -7)),
-      }),
-    },
-    {
-      label: '上上一週',
-      range: () => ({
-        startDate: startOfWeek(addDays(new Date(), -14)),
-        endDate: endOfWeek(addDays(new Date(), -14)),
+        startDate: addWeeks(new Date(), -1),
+        endDate: addDays(new Date(), -1),
       }),
     },
     {
       label: '一個月內',
       range: () => ({
-        startDate: addDays(new Date(), -30),
+        startDate: addMonths(new Date(), -1),
+        endDate: addDays(new Date(), -1),
+      }),
+    },
+    {
+      label: '三個月內',
+      range: () => ({
+        startDate: addMonths(new Date(), -3),
+        endDate: addDays(new Date(), -1),
+      }),
+    },
+    {
+      label: '半年內',
+      range: () => ({
+        startDate: addMonths(new Date(), -6),
         endDate: addDays(new Date(), -1),
       }),
     },
