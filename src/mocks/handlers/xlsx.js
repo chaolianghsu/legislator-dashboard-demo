@@ -1,8 +1,8 @@
 import { rest } from 'msw'
-import { xlsxsAPI, baseUrl } from '@/apis'
+import { xlsxAPI, baseUrl } from '@/apis'
 import axios from 'axios'
 
-const Url = `${baseUrl}${xlsxsAPI.Url}`
+const Url = `${baseUrl}${xlsxAPI.Url}`
 
 const xlsxsAPIs = [
   rest.post(Url, async (req, res, ctx) => {

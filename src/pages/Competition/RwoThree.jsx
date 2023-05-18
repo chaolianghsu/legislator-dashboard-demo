@@ -1,7 +1,7 @@
 import {
   Stack, Typography, CardActions, Card as MuiCard, CardHeader,
 } from '@mui/material'
-import { xlsxsAPI } from '@/apis'
+import { xlsxAPI } from '@/apis'
 import { useMutation } from '@tanstack/react-query'
 import {
   Card, PieChart, DetailButton, ColChart,
@@ -33,7 +33,7 @@ const fakePieSeries = [
 
 function RowThree() {
   const { mutate } = useMutation({
-    mutationFn: (data) => xlsxsAPI.download({ area: data }),
+    mutationFn: (data) => xlsxAPI.download({ area: data }),
     onSuccess: (res) => {
       downloadFile({
         blob: res,
