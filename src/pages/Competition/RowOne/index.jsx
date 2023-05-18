@@ -45,7 +45,7 @@ function RowOne() {
             </Stack>
           </CardContent>
         </Card>
-        <Card sx={{ width: '300px' }}>
+        <Card sx={{ width: '300px', flexGrow: 1 }}>
           <CardContent>
             <TitleData
               title="心佔率"
