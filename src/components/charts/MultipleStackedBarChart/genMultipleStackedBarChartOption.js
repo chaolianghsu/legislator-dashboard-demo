@@ -164,7 +164,7 @@ const genMultipleStackedBarChartOption = ({
     },
   },
   series,
-  chartOptionOverrides,
+  ...chartOptionOverrides,
 })
 
 export default genMultipleStackedBarChartOption
