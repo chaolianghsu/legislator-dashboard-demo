@@ -5,7 +5,7 @@ import { HeaderBar } from '@/components'
 import RecentActorsIcon from '@mui/icons-material/RecentActors'
 import RowOne from './RowOne'
 import RowTwo from './RowTwo'
-import RowThree from './RwoThree'
+import RowThree from './RowThree'
 
 function Competition() {
   return (
