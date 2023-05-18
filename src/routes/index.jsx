@@ -16,6 +16,7 @@ import {
   Competition,
   Discuss,
   ElectoralDistrictCompetition,
+  KeyLeader,
 } from '@/pages'
 
 import PrivateRoutes from './PrivateRoutes'
@@ -36,6 +37,7 @@ function Routers() {
               <Route path="favorability" element={<Favorability />} />
               <Route path="textlist" element={<TextList />} />
               <Route path="hotkeyword" element={<HotKeyword />} />
+              <Route path="keyleader" element={<KeyLeader />} />
             </Route>
             <Route path="competition">
               <Route index element={<Competition />} />
