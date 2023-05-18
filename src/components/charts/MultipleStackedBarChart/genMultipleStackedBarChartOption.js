@@ -1,6 +1,6 @@
 import Highcharts from 'highcharts'
 
-const genMultipleStackedBarChartOption = (() => ({
+const genMultipleStackedBarChartOption = ({
   chart: {
     type: 'bar',
     height: 900,
@@ -51,7 +51,7 @@ const genMultipleStackedBarChartOption = (() => ({
     series: {
       stacking: 'normal',
       dataLabels: {
-        enabled: true,
+        enabled: false,
         formatter() {
           return Highcharts.numberFormat(this.y, 0, '.', ',') // Format number with comma as thousand separator
         },
@@ -144,6 +144,6 @@ const genMultipleStackedBarChartOption = (() => ({
       ],
     },
   ],
-}))
+})
 
 export default genMultipleStackedBarChartOption

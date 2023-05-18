@@ -190,9 +190,9 @@ function ReputationSectionTwo() {
             display: 'flex',
             flexDirection: 'column',
           }}
-          chartContainerProps={{
+          CardContentProps={{
             sx: {
-              marginTop: '2rem',
+              marginTop: '0.2rem',
             },
           }}
           title={(
