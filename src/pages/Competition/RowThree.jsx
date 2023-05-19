@@ -1,10 +1,13 @@
-import {
-  Stack, Typography, CardActions, Card as MuiCard, CardHeader,
-} from '@mui/material'
+import { Stack, CardActions } from '@mui/material'
 import { xlsxAPI } from '@/apis'
 import { useMutation } from '@tanstack/react-query'
+
 import {
-  Card, PieChart, DetailButton, ColChart,
+  Card,
+  PieChart,
+  DetailButton,
+  ColChart,
+  TitleData,
 } from '@/components'
 import { downloadFile } from '@/utils'
 
@@ -48,11 +51,11 @@ function RowThree() {
         xs: 'column',
         md: 'row',
       }}
+      sx={{ paddingX: '1rem' }}
     >
       <Card
         sx={{
           width: '100%',
-          height: '100%',
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -62,47 +65,34 @@ function RowThree() {
             maxHeight: '70rem',
           },
         }}
-        title={(
-          <Stack spacing={1}>
-            <Typography variant="h4">選民輪廓</Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
-            >
-              該選區選民的各項人口統計資料。
-            </Typography>
-          </Stack>
-        )}
+        title={<TitleData title="選民輪廓" value="" />}
       >
         <PieChart series={fakePieSeries} />
         <CardActions>
           <DetailButton
-            onClick={() => { mutate('台北市') }}
+            onClick={() => {
+              mutate('台北市')
+            }}
             sx={{ marginRight: '2rem', width: '180px' }}
           >
             下載人口統計資料
           </DetailButton>
         </CardActions>
       </Card>
-      <MuiCard
+      <Card
         sx={{
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
         }}
+        CardContentProps={{
+          sx: {
+            flex: 1,
+            maxHeight: '70rem',
+          },
+        }}
+        title={<TitleData title="歷史模型" value="" />}
       >
-        <CardHeader title={(
-          <Stack spacing={1}>
-            <Typography variant="h4">歷史模型</Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
-            >
-              過去4屆立委選舉結果。
-            </Typography>
-          </Stack>
-        )}
-        />
         <ColChart
           series={[
             {
@@ -139,16 +129,11 @@ function RowThree() {
             },
             xAxis: {
               type: 'category',
-              categories: [
-                2008,
-                2012,
-                2016,
-                2020,
-              ],
+              categories: [2008, 2012, 2016, 2020],
             },
           }}
         />
-      </MuiCard>
+      </Card>
     </Stack>
   )
 }

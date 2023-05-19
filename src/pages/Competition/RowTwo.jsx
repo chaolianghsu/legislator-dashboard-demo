@@ -1,10 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import {
-  Stack, Card, CardContent, CardActions,
-} from '@mui/material'
-import { TitleData, DetailButton } from '@/components'
+import { Stack, CardActions } from '@mui/material'
+import { TitleData, DetailButton, Card } from '@/components'
 
-function RowOne() {
+function RowTwo() {
   const navigate = useNavigate()
   return (
     <Stack
@@ -14,13 +12,12 @@ function RowOne() {
       }}
       // justifyContent="space-between"
       spacing={3}
+      sx={{ paddingX: '1rem' }}
     >
-      <Card>
-        <CardContent>
-          <TitleData
-            title="政策討論度"
-          />
-        </CardContent>
+      <Card
+        sx={{ flexGrow: 1, flexBasis: '50%' }}
+        title={<TitleData title="政策討論度" />}
+      >
         <CardActions>
           <DetailButton
             onClick={() => navigate('/competition/discuss')}
@@ -30,10 +27,10 @@ function RowOne() {
           </DetailButton>
         </CardActions>
       </Card>
-      <Card sx={{ flexGrow: 1 }}>
-        <CardContent>
-          <TitleData value={24777} unit="ticket" title="異色搖擺選票" />
-        </CardContent>
+      <Card
+        sx={{ flexGrow: 1, flexBasis: '50%' }}
+        title={<TitleData value={24777} unit="ticket" title="異色搖擺選票" />}
+      >
         <CardActions>
           <DetailButton
             onClick={() => navigate('/competition/indecision-index')}
@@ -47,6 +44,6 @@ function RowOne() {
   )
 }
 
-RowOne.propTypes = {}
+RowTwo.propTypes = {}
 
-export default RowOne
+export default RowTwo

@@ -10,7 +10,7 @@ function Discuss() {
   return (
     <Stack spacing={2}>
       <HeaderBar
-        text="候選人競爭模組 / 政策討論"
+        text="候選人競爭模組 / 政策討論度"
         note={(
           <BlueButton
             onClick={() => {

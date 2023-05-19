@@ -149,15 +149,7 @@ function ReputationSectionTwo() {
         </Card>
         <Card
           title={(
-            <Stack spacing={1}>
-              <Typography variant="h4">熱門文章</Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
-              >
-                熱門文章為討論較多的文章，依據回文數排序。
-              </Typography>
-            </Stack>
+            <TitleData title="熱門文章" value="" />
           )}
         >
           <Stack margin={1.5}>
@@ -196,15 +188,7 @@ function ReputationSectionTwo() {
             },
           }}
           title={(
-            <Stack spacing={1}>
-              <Typography variant="h4">關鍵領袖</Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
-              >
-                關鍵領袖的subtitle
-              </Typography>
-            </Stack>
+            <TitleData title="關鍵領袖" value="" />
           )}
         >
           <Stack>

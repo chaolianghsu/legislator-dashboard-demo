@@ -1,6 +1,4 @@
-import {
-  Stack,
-} from '@mui/material'
+import { Stack } from '@mui/material'
 import { HeaderBar } from '@/components'
 import RecentActorsIcon from '@mui/icons-material/RecentActors'
 import RowOne from './RowOne'
