@@ -1,9 +1,8 @@
 import { Stack } from '@mui/material'
-import { HeaderBar } from '@/components'
 import RecentActorsIcon from '@mui/icons-material/RecentActors'
-import RowOne from './RowOne'
-import RowTwo from './RowTwo'
-import RowThree from './RowThree'
+
+import { HeaderBar } from '@/components'
+import { CompetitionRowOne, CompetitionRowTwo, CompetitionRowThree } from '@/containers/competition'
 
 function Competition() {
   return (
@@ -12,9 +11,9 @@ function Competition() {
         text="候選人競爭模組"
         icon={<RecentActorsIcon sx={{ fontSize: '3rem' }} />}
       />
-      <RowOne />
-      <RowTwo />
-      <RowThree />
+      <CompetitionRowOne />
+      <CompetitionRowTwo />
+      <CompetitionRowThree />
     </Stack>
   )
 }
