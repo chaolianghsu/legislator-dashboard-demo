@@ -9,6 +9,7 @@ import pa07Img from '@/assets/pa07.png'
 
 const partyImgMap = {
   無黨: pa00Img,
+  國民黨: pa01Img,
   中國國民黨: pa01Img,
   民進黨: pa02Img,
   民眾黨: pa03Img,

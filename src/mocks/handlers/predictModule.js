@@ -10,51 +10,37 @@ const predictModuleAPIs = [
     ctx.json({
       result: [
         {
-          date: '2023/01/22 ~ 2023/02/21',
-          update: '2023/02/21',
-          name: '羅智強',
-          image: 'https://stationhousevets.com/wp-content/uploads/2021/10/closeup-shot-guinea-pig-isolated-scaled.jpg',
-          vol: {
-            total: 41762,
-            grow: '8.92',
-          },
-          reputation: {
-            total: 93962.9,
-            grow: 4,
-          },
-          favorability: {
-            total: 0.8,
-            grow: '-4.76',
-          },
-          social_rc: 712118,
-          social_touch: 118652,
-          diffusion: 77,
-          interaction: 21.2,
-          superior_vote: 105922,
-          swing: 66.67,
-          politician: [
+          date: '2023/04/16 ~ 2023/05/15',
+          update: '2023/05/21',
+          person: [
             {
-              city: '臺北市',
+              member_id: 1,
+              person_id: 0,
               name: '羅智強',
-              political: '中國國民黨',
-              elpc: 47.68,
-              image: '',
-            },
-            {
-              city: '臺北市',
-              name: '陳時中',
-              political: '民進黨',
-              elpc: 32.2,
-              image: '',
-            },
-            {
-              city: '臺北市',
-              name: '黃珊珊',
-              political: '親民黨',
-              elpc: 29.8,
-              image: '',
+              image: 'https://stationhousevets.com/wp-content/uploads/2021/10/closeup-shot-guinea-pig-isolated-scaled.jpg',
+              party: '中國國民黨',
+              is_main: true,
+              election_success_rate: 47.68,
             },
           ],
+          party_advantage: 29614,
+          swing_rate: null,
+          vol: {
+            total: 396,
+            grow: '-86.88',
+          },
+          reputation: {
+            total: 1667.4,
+            grow: -76,
+          },
+          favorability: {
+            total: 1.45,
+            grow: '339.39',
+          },
+          social_rc: 0,
+          social_touch: 0,
+          diffusion: 29,
+          interaction: 51.7,
         },
       ],
       code: 0,
