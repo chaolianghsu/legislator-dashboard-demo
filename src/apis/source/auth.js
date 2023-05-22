@@ -1,8 +1,8 @@
 import { axiosInstance } from '../axiosInstance'
 
-export const Url = '/token'
-export const tokenVerifyUrl = `${Url}/verify`
-export const tokenRefreshUrl = `${Url}/refresh`
+export const Url = '/api/token/'
+export const tokenVerifyUrl = `${Url}verify/`
+export const tokenRefreshUrl = `${Url}refresh/`
 
 export const getToken = async ({ email, password }) => {
   const res = await axiosInstance.post(Url, {
