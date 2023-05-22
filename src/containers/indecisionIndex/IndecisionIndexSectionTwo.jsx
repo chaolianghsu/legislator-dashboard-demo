@@ -1,8 +1,21 @@
 import { Stack, Unstable_Grid2 as Grid } from '@mui/material'
-
-import { Card, TitleData, ColChart } from '@/components'
+import { useQuery } from '@tanstack/react-query'
+import {
+  Card, TitleData, ColChart, LoadingProgress,
+} from '@/components'
+import { partyAdvantageAPI } from '@/apis'
 
 function IndecisionIndexSectionTwo() {
+  const { data: partyAdvantage, isLoading, isFetching } = useQuery({
+    queryKey: [partyAdvantageAPI.Url],
+    queryFn: () => partyAdvantageAPI.getData(),
+    select: (d) => d.result[0].party_advantage,
+  })
+
+  if (isLoading || isFetching) {
+    return <LoadingProgress />
+  }
+
   return (
     <Grid container spacing={3}>
       <Grid xs={12} lg={4}>
@@ -33,7 +46,7 @@ function IndecisionIndexSectionTwo() {
             <Stack spacing={5}>
               <TitleData value={154909} unit="ticket" title="同色搖擺選票" />
               <TitleData value={226316} unit="ticket" title="政黨最低得票數" />
-              <TitleData value={123423} unit="ticket" title="政黨優勢" />
+              <TitleData value={partyAdvantage} unit="ticket" title="政黨優勢" />
             </Stack>
             <ColChart
               series={[
