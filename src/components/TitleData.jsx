@@ -5,6 +5,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 export const descriptionConfigs = {
   聲譽值: '綜合評量網路聲量與好感度，數值越高代表聲譽越佳。',
+  熱門文章: '熱門文章為討論較多的文章，依據回文數排序。',
   網路聲量: '網路上提及自己討論數，筆數越多表示討論度越高。',
   好感度: '網路上的好感程度，正評越多且負評越少，好感度越高。',
   擴散廣度: '相關新聞出現的頻道數量，數值越高表示新聞擴散越廣。',
@@ -23,6 +24,10 @@ export const descriptionConfigs = {
   政黨優勢: '在這個地區平均比其他黨多拿到的選票。',
   心佔率: '所有相關候選人的網路聲量中提及自己的佔比，百分比越高表示被提及的次數越多。',
   選區競爭: '自己與競爭對手在各項指標的優劣勢情形。',
+  選民輪廓: '該選區選民的各項人口統計資料。',
+  歷史模型: '過去4屆立委選舉結果。',
+  // Should be changed later
+  關鍵領袖: '社群媒體上提及候選人的領袖名單。',
 }
 
 function TitleData({
