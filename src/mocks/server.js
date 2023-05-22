@@ -12,6 +12,7 @@ import {
   volumeAPIs,
   authAPIs,
   xlsxAPIs,
+  swingModuleAPIs,
   competitorAPIs,
 } from './handlers'
 
@@ -29,5 +30,6 @@ export const server = setupServer(
   ...volumeAPIs,
   ...authAPIs,
   ...xlsxAPIs,
+  ...swingModuleAPIs,
   ...competitorAPIs,
 )

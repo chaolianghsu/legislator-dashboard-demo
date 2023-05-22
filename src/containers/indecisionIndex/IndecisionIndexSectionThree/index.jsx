@@ -1,7 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material'
 
 import { indecisionPalette } from '@/utils'
-import { fakeSwingData } from './data'
+import { useQuery } from '@tanstack/react-query'
+import { swingModuleAPI } from '@/apis'
 import IndecisionBlock from './IndecisionBlock'
 
 const leanColors = {
@@ -13,8 +14,16 @@ const leanColors = {
 }
 
 function IndecisionIndexSectionThree() {
-  const { district, data } = fakeSwingData
+  const { data: swingData, isLoading, isFetching } = useQuery({
+    queryKey: [swingModuleAPI.Url],
+    queryFn: () => swingModuleAPI.getData(),
+    select: (d) => d.result[0],
+  })
 
+  if (isLoading || isFetching) {
+    return <>isLoading</>
+  }
+  const { district, data } = swingData
   const villagesData = Object.keys(indecisionPalette).map((swing) => ({
     swing,
     villages: data
