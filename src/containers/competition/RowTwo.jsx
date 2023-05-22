@@ -1,46 +1,44 @@
 import { useNavigate } from 'react-router-dom'
-import { Stack, CardActions } from '@mui/material'
+import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
 import { TitleData, DetailButton, Card } from '@/components'
 
 function RowTwo() {
   const navigate = useNavigate()
   return (
-    <Stack
-      direction={{
-        xs: 'column',
-        md: 'row',
-      }}
-      // justifyContent="space-between"
+    <Grid
       spacing={3}
-      sx={{ paddingX: '1rem' }}
+      container
     >
-      <Card
-        sx={{ flexGrow: 1, flexBasis: '50%' }}
-        title={<TitleData title="政策討論度" />}
-      >
-        <CardActions>
-          <DetailButton
-            onClick={() => navigate('/competition/discuss')}
-            sx={{ marginLeft: 'auto' }}
-          >
-            詳細資料
-          </DetailButton>
-        </CardActions>
-      </Card>
-      <Card
-        sx={{ flexGrow: 1, flexBasis: '50%' }}
-        title={<TitleData value={24777} unit="ticket" title="異色搖擺選票" />}
-      >
-        <CardActions>
-          <DetailButton
-            onClick={() => navigate('/competition/indecision-index')}
-            sx={{ marginLeft: 'auto' }}
-          >
-            詳細資料
-          </DetailButton>
-        </CardActions>
-      </Card>
-    </Stack>
+      <Grid xs={12} md={6}>
+        <Card
+          title={<TitleData title="政策討論度" />}
+        >
+          <CardActions>
+            <DetailButton
+              onClick={() => navigate('/competition/discuss')}
+              sx={{ marginLeft: 'auto' }}
+            >
+              詳細資料
+            </DetailButton>
+          </CardActions>
+        </Card>
+      </Grid>
+      <Grid xs={12} md={6}>
+        <Card
+          sx={{ height: '100%' }}
+          title={<TitleData value={24777} unit="ticket" title="異色搖擺選票" />}
+        >
+          <CardActions>
+            <DetailButton
+              onClick={() => navigate('/competition/indecision-index')}
+              sx={{ marginLeft: 'auto' }}
+            >
+              詳細資料
+            </DetailButton>
+          </CardActions>
+        </Card>
+      </Grid>
+    </Grid>
   )
 }
 
