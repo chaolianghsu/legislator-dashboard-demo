@@ -10,7 +10,7 @@ import { PredictionCardGrid } from '@/containers/prediction'
 import { HeaderBar, LoadingProgress } from '@/components'
 import { partyImgMap } from '@/utils'
 import { useGlobalDateStore } from '@/store'
-import { predictModuleAPI } from '@/apis'
+import { predictModuleAPI, competitorAPI } from '@/apis'
 
 function Prediction() {
   const { startDate, endDate } = useGlobalDateStore(
@@ -30,10 +30,19 @@ function Prediction() {
       from: formattedDateStart,
       to: formattedDateEnd,
     }),
-    select: (d) => d.result[0],
+    select: (d) => d.result[0].person[0],
   })
 
-  if (isLoading || isFetching) {
+  const {
+    data: competitors, isLoading: isCompetitorsLoading,
+    isFetching: isCompetitorsFetching,
+  } = useQuery({
+    queryKey: [competitorAPI.Url],
+    queryFn: () => competitorAPI.getData(),
+    select: (d) => d.result,
+  })
+
+  if (isLoading || isFetching || isCompetitorsLoading || isCompetitorsFetching) {
     return <LoadingProgress />
   }
 
@@ -55,14 +64,14 @@ function Prediction() {
           </Typography>
           <Stack direction="row" alignItems="center" spacing={1}>
             <img
-              src={partyImgMap[data.politician[0].political]}
-              alt={data.politician[0].political}
+              src={partyImgMap[data.party]}
+              alt={data.party}
               style={{ height: '2rem' }}
             />
             <Typography
               sx={{ fontSize: '2.4rem' }}
             >
-              {`${data.politician[0].elpc}%`}
+              {`${data.election_success_rate}%`}
             </Typography>
           </Stack>
         </Stack>
@@ -73,7 +82,7 @@ function Prediction() {
             </Typography>
           </Box>
           <Stack direction="row" gap="1rem">
-            {data.politician.slice(1).map((p) => (
+            {competitors.map((p) => (
               <Stack
                 alignItems="center"
                 sx={{ color: 'customBlue.dark' }}
@@ -93,14 +102,14 @@ function Prediction() {
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <img
-                    src={partyImgMap[p.political]}
-                    alt={p.political}
+                    src={partyImgMap[p.party]}
+                    alt={p.party}
                     style={{ height: '2rem' }}
                   />
                   <Typography
                     sx={{ fontSize: '2rem' }}
                   >
-                    {`${p.elpc}%`}
+                    {`${p.election_success_rate || 0}%`}
                   </Typography>
                 </Stack>
               </Stack>
