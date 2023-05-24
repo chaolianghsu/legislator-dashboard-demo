@@ -6,11 +6,11 @@ import { swingModuleAPI } from '@/apis'
 import IndecisionBlock from './IndecisionBlock'
 
 const leanColors = {
-  藍營: '#1B7509',
-  泛藍: '#67CE23',
+  藍營: '#1343C9',
+  泛藍: '#4c82e7',
   中立: '#797979',
-  泛綠: '#4c82e7',
-  綠營: '#1343C9',
+  泛綠: '#67CE23',
+  綠營: '#1B7509',
 }
 
 function IndecisionIndexSectionThree() {
