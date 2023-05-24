@@ -13,6 +13,7 @@ import {
   authAPIs,
   xlsxAPIs,
   competitorAPIs,
+  partyAdvantageAPIs,
 } from './handlers'
 
 // eslint-disable-next-line import/prefer-default-export
@@ -30,4 +31,5 @@ export const worker = setupWorker(
   ...authAPIs,
   ...xlsxAPIs,
   ...competitorAPIs,
+  ...partyAdvantageAPIs,
 )
