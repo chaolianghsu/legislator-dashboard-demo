@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Avatar,
   Stack,
@@ -9,9 +9,15 @@ import {
 } from '@mui/material'
 import InfoIcon from '@mui/icons-material/Info'
 
-import { Card, TitleData, StackedBarChartGroup } from '@/components'
+import { useQuery } from '@tanstack/react-query'
+import { constituencyAPI } from '@/apis'
+import { useGlobalDateStore } from '@/store'
+import { shallow } from 'zustand/shallow'
+import dateFormat from 'dateformat'
+import {
+  Card, TitleData, StackedBarChartGroup, LoadingProgress,
+} from '@/components'
 import { descriptionConfigs } from '@/components/TitleData'
-import { districtData, competitionData } from './data'
 
 const unitMap = {
   網路聲量: '筆',
@@ -21,9 +27,35 @@ const unitMap = {
 }
 
 function ElectoralDistrictCompetitionSection() {
-  const { politician, opponents } = districtData
+  const [opponent, setOpponent] = useState('')
+  const { startDate, endDate } = useGlobalDateStore(
+    (state) => ({
+      startDate: state.startDate,
+      endDate: state.endDate,
+    }),
+    shallow,
+  )
 
-  const [opponent, setOpponent] = useState(opponents[0].name)
+  const formattedDateStart = dateFormat(startDate, 'yyyymmdd')
+  const formattedDateEnd = dateFormat(endDate, 'yyyymmdd')
+
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: [constituencyAPI.Url, startDate, endDate],
+    queryFn: () => constituencyAPI.getData({ from: formattedDateStart, to: formattedDateEnd }),
+    select: (d) => d.result[0],
+  })
+
+  useEffect(() => {
+    if (data) {
+      setOpponent(data.comp[1].name)
+    }
+  }, [data])
+
+  if (isLoading || isFetching) {
+    return <LoadingProgress />
+  }
+
+  const politician = data.comp[0]
 
   return (
     <Card>
@@ -54,7 +86,7 @@ function ElectoralDistrictCompetitionSection() {
         </Typography>
         <Stack alignItems="center">
           <Avatar
-            src={opponents.find((o) => o.name === opponent).image}
+            src={data.comp.find((o) => o.name === opponent)?.image}
             sx={{
               width: 180,
               height: 180,
@@ -79,7 +111,7 @@ function ElectoralDistrictCompetitionSection() {
               },
             }}
           >
-            {opponents.map((op) => (
+            {data.comp.slice(1).map((op) => (
               <MenuItem value={op.name} key={op.name}>
                 {op.name}
               </MenuItem>
@@ -88,7 +120,7 @@ function ElectoralDistrictCompetitionSection() {
         </Stack>
       </Stack>
       <Stack gap="1rem">
-        {competitionData[opponent].data.map((index) => (
+        {data.data.map((index) => (
           <StackedBarChartGroup
             key={index.name}
             title={(
