@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query'
 
 import { axiosInstance } from '@/apis'
 import { getToken } from '@/apis/source/auth'
-import LogoLoginImg from '@/assets/logo-login.png'
+import LogoLoginImg from '@/assets/logo.png'
 
 function LoginForm() {
   const [isRobot, setIsRobot] = useState(true)
