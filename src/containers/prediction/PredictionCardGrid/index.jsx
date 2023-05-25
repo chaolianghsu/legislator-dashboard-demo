@@ -9,9 +9,8 @@ import contentConfig from './contentConfig'
 
 function PredictionCardGrid({ data }) {
   const navigate = useNavigate()
-
   const dataFormat = contentConfig.map((item) => {
-    if (data[item.indName]) {
+    if (data[item.indName] || (data[item.indName] === 0)) {
       return {
         ...item,
         subTitle: (

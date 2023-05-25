@@ -30,7 +30,7 @@ function Prediction() {
       from: formattedDateStart,
       to: formattedDateEnd,
     }),
-    select: (d) => d.result[0].person[0],
+    select: (d) => d.result[0],
   })
 
   const {
@@ -51,7 +51,7 @@ function Prediction() {
       <Stack direction="row" gap="1rem" justifyContent="center">
         <Stack alignItems="center" sx={{ color: 'customBlue.dark' }}>
           <Avatar
-            src={data.image}
+            src={data.person[0].image}
             sx={{
               width: 120,
               height: 120,
@@ -60,18 +60,18 @@ function Prediction() {
             }}
           />
           <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-            {data.name}
+            {data.person[0].name}
           </Typography>
           <Stack direction="row" alignItems="center" spacing={1}>
             <img
-              src={partyImgMap[data.party]}
-              alt={data.party}
+              src={partyImgMap[data.person[0].party]}
+              alt={data.person[0].party}
               style={{ height: '2rem' }}
             />
             <Typography
               sx={{ fontSize: '2.4rem' }}
             >
-              {`${data.election_success_rate}%`}
+              {`${data.person[0].election_success_rate || 0}%`}
             </Typography>
           </Stack>
         </Stack>
@@ -82,7 +82,7 @@ function Prediction() {
             </Typography>
           </Box>
           <Stack direction="row" gap="1rem">
-            {competitors.map((p) => (
+            {competitors.slice(1).map((p) => (
               <Stack
                 alignItems="center"
                 sx={{ color: 'customBlue.dark' }}
@@ -118,7 +118,7 @@ function Prediction() {
         </Stack>
       </Stack>
       <HeaderBar
-        text={`${data.name} 指標儀表板`}
+        text={`${data.person[0].name} 指標儀表板`}
         note={`數據調查期間：${dateFormat(
           startDate,
           'yyyy/mm/dd',
