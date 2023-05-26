@@ -135,7 +135,6 @@ const genMultipleStackedBarChartOption = ({
       enabled: true,
     },
     tickLength: 5,
-
   },
   yAxis: {
     title: {

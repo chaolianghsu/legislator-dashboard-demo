@@ -34,7 +34,7 @@ function IndecisionIndexSectionTwo() {
               spacing={5}
             >
               <TitleData value={(154909).toLocaleString()} unit="ticket" title="預估投票人數" />
-              <TitleData value={(226316).toLocaleString()} unit="ticket" title="上屆選舉人數" />
+              <TitleData value={(226316).toLocaleString()} unit="ticket" title="2023選舉人數" />
               <TitleData value="61.78%" unit="ticket" title="平均投票率" />
             </Stack>
           </Stack>
