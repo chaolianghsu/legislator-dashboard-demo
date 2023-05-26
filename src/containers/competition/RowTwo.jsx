@@ -26,7 +26,7 @@ function RowTwo() {
       <Grid xs={12} md={6}>
         <Card
           sx={{ height: '100%' }}
-          title={<TitleData value={(24777).toLocaleString()} unit="ticket" title="搖擺選票" />}
+          title={<TitleData value={(24777).toLocaleString()} title="搖擺人數" />}
         >
           <CardActions>
             <DetailButton
