@@ -30,7 +30,7 @@ function DiscussContainer() {
 
   return (
     <Box padding={1.5}>
-      <Card title={<TitleData title="政策討論度" value={`${value}%`} />}>
+      <Card title={<TitleData title="八大施政好感度" value={`${value}%`} />}>
         <BarLineChart
           categories={categories}
           lineData={lineData}
