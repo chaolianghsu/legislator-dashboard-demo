@@ -2,8 +2,17 @@
 // colors ['#8E9EE3', '#1BFBE4', '#FD8373', '#8b0707', '#8B46BD', '#aaaa11', '#22aa99', '#853785', '#66aa00', '#8A7F7D', '#d24675', '#D38A1B', '#42A881', '#D98179', '#008972']
 
 // categories = xAxis of names
-const genBarLineChartOption = ({ categories = ['cate1', 'cate2', 'cate3'], lineData = [1, 2, 3], barData = [3, 2, 1] }) => ({
+const genBarLineChartOption = (
+  {
+    categories = ['cate1', 'cate2', 'cate3'],
+    lineData = [1, 2, 3],
+    barData = [3, 2, 1],
+  },
+) => ({
   title: '',
+  tooltip: {
+    shared: true,
+  },
   chart: {
     scrollablePlotArea: {
       minWidth: 600,
@@ -23,6 +32,7 @@ const genBarLineChartOption = ({ categories = ['cate1', 'cate2', 'cate3'], lineD
       labels: {
         format: '{value}%',
       },
+      max: 100,
     },
     {
       opposite: true,
@@ -38,7 +48,6 @@ const genBarLineChartOption = ({ categories = ['cate1', 'cate2', 'cate3'], lineD
         style: {
           color: '#46BBFF',
         },
-        format: '{value}',
       },
     },
   ],
@@ -51,7 +60,9 @@ const genBarLineChartOption = ({ categories = ['cate1', 'cate2', 'cate3'], lineD
       type: 'column',
       yAxis: 1,
       tooltip: {
-        valueSuffix: '筆',
+        pointFormatter() {
+          return `${this.series.name}：${this.y.toLocaleString()}筆<br/>`
+        },
       },
       data: barData,
       // bar color
@@ -61,7 +72,9 @@ const genBarLineChartOption = ({ categories = ['cate1', 'cate2', 'cate3'], lineD
       name: '滿意度',
       type: 'spline',
       tooltip: {
-        valueSuffix: '%',
+        pointFormatter() {
+          return `${this.series.name}：${this.y.toLocaleString()}%<br/>`
+        },
       },
       data: lineData,
       // line color
