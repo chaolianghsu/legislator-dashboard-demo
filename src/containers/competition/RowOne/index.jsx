@@ -32,7 +32,7 @@ function RowOne() {
                 }}
               />
               <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                巧馨姐
+                徐巧馨
               </Typography>
             </Stack>
           </Card>
