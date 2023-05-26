@@ -212,10 +212,24 @@ function ReputationSectionTwo() {
           title={<TitleData title="關鍵領袖" value="" />}
         >
           <Stack>
-            <Box sx={{ maxHeight: '665px', overflow: 'auto' }}>
+            <Box>
               <MultipleStackedBarChart
+                chartContainerProps={{
+                  sx: {
+                    height: '665px',
+                  },
+                }}
                 categories={opleaderCategoriesParser(opleaderData.categories)}
                 series={opleaderSeriesParser(opleaderData.series)}
+                chartOptionOverrides={{
+                  chart: {
+                    type: 'bar',
+                    scrollablePlotArea: {
+                      minHeight: 900,
+                    },
+                    height: 665,
+                  },
+                }}
               />
             </Box>
             <DetailButton
