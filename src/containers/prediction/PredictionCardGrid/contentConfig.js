@@ -15,7 +15,7 @@ const contentConfig = [
     imgSrc: AdvantageIcon,
     linkTo: '/competition/indecision-index',
     unit: '',
-    indName: 'superior_vote',
+    indName: 'party_advantage',
   },
   {
     title: '網路聲量',
@@ -47,7 +47,7 @@ const contentConfig = [
     imgSrc: IndecisionIcon,
     linkTo: '/competition/indecision-index',
     unit: '%',
-    indName: 'swing',
+    indName: 'swing_rate',
   }, {
     title: '社群互動力',
     description: '評量發文數、按讚數、留言數及分享數，數值越高表示該週互動度越高。',
