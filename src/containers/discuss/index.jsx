@@ -20,10 +20,11 @@ function DiscussContainer() {
   const categories = data.data?.map((item) => item.name)
   const lineData = data.data?.map((item) => item.satisfaction)
   const barData = data.data?.map((item) => item.vol)
+  const value = (data.public_satisfaction * 100).toFixed(2)
 
   return (
     <Box padding={1.5}>
-      <Card title={<TitleData title="政策討論度" value={data.public_satisfaction} />}>
+      <Card title={<TitleData title="政策討論度" value={`${value}%`} />}>
         <BarLineChart categories={categories} lineData={lineData} barData={barData} />
       </Card>
     </Box>
