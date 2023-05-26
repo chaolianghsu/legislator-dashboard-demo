@@ -14,6 +14,7 @@ import {
   xlsxAPIs,
   swingModuleAPIs,
   competitorAPIs,
+  constituencyAPIs,
   partyAdvantageAPIs,
 } from './handlers'
 
@@ -33,5 +34,6 @@ export const worker = setupWorker(
   ...xlsxAPIs,
   ...swingModuleAPIs,
   ...competitorAPIs,
+  ...constituencyAPIs,
   ...partyAdvantageAPIs,
 )
