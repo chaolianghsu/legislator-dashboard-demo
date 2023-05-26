@@ -16,7 +16,7 @@ const competitorAPIs = [
           image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
           party: '國民黨',
           is_main: true,
-          election_success_rate: null,
+          election_success_rate: 54.5,
         },
         {
           member_id: 1,
@@ -25,7 +25,7 @@ const competitorAPIs = [
           image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
           party: '民進黨',
           is_main: false,
-          election_success_rate: null,
+          election_success_rate: 45.5,
         },
       ],
       code: 0,

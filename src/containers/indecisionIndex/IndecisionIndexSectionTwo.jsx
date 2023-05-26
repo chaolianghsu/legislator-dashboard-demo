@@ -33,8 +33,8 @@ function IndecisionIndexSectionTwo() {
               }}
               spacing={5}
             >
-              <TitleData value={154909} unit="ticket" title="預估投票人數" />
-              <TitleData value={226316} unit="ticket" title="上屆選舉人數" />
+              <TitleData value={(154909).toLocaleString()} unit="ticket" title="預估投票人數" />
+              <TitleData value={(226316).toLocaleString()} unit="ticket" title="上屆選舉人數" />
               <TitleData value="61.78%" unit="ticket" title="平均投票率" />
             </Stack>
           </Stack>
@@ -42,11 +42,11 @@ function IndecisionIndexSectionTwo() {
       </Grid>
       <Grid xs={12} lg={8}>
         <Card sx={{ height: '100%' }}>
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={5} justifyContent="space-between">
             <Stack spacing={5}>
-              <TitleData value={154909} unit="ticket" title="同色搖擺選票" />
-              <TitleData value={226316} unit="ticket" title="政黨最低得票數" />
-              <TitleData value={partyAdvantage} unit="ticket" title="政黨優勢" />
+              <TitleData value={(230809).toLocaleString()} unit="ticket" title="黨最高得票數" titlePrefix="國民" />
+              <TitleData value={(154090).toLocaleString()} unit="ticket" title="黨最低得票數" titlePrefix="國民" />
+              <TitleData value={partyAdvantage.toLocaleString()} unit="ticket" title="黨優勢" titlePrefix="國民" />
             </Stack>
             <ColChart
               series={[

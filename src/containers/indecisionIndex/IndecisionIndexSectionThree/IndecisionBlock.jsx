@@ -38,7 +38,7 @@ function VillageCard({
             gap: '0.5rem',
           }}
         >
-          異色搖擺選票
+          搖擺選票
           <span style={{ fontSize: '2rem' }}>{diffVote}</span>
         </Typography>
         <Typography

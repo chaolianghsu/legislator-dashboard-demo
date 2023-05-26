@@ -20,7 +20,7 @@ function IndecisionIndexSectionOne() {
             }}
             spacing={5}
           >
-            <TitleData value={24777} unit="ticket" title="異色搖擺選票" />
+            <TitleData value={(24777).toLocaleString()} unit="ticket" title="搖擺選票" />
             <TitleData
               title="歷史搖擺程度"
               customValue={(
@@ -50,7 +50,7 @@ function IndecisionIndexSectionOne() {
                 fontSize: '2rem',
               }}
             >
-              異色搖擺選票佔比
+              搖擺選票佔比
             </Typography>
             <BarChart
               categories={['']}
@@ -63,7 +63,7 @@ function IndecisionIndexSectionOne() {
                 },
                 {
                   pointPlacement: 0.2,
-                  name: '異色搖擺選票',
+                  name: '搖擺選票',
                   color: '#46BBFD',
                   dataLabels: [
                     {
