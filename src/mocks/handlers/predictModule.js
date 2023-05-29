@@ -11,8 +11,8 @@ const predictModuleAPIs = [
       {
         result: [
           {
-            date: '2023/04/24 ~ 2023/05/24',
-            update: '2023/05/24',
+            date: '2023/04/25 ~ 2023/05/25',
+            update: '2023/05/25',
             person: [
               {
                 member_id: 1,
@@ -21,7 +21,7 @@ const predictModuleAPIs = [
                 image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
                 party: '國民黨',
                 is_main: true,
-                election_success_rate: null,
+                election_success_rate: 54.5,
               },
               {
                 member_id: 1,
@@ -30,27 +30,27 @@ const predictModuleAPIs = [
                 image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
                 party: '民進黨',
                 is_main: false,
-                election_success_rate: null,
+                election_success_rate: 45.5,
               },
             ],
-            party_advantage: 0,
-            swing_rate: 0,
+            party_advantage: 34591,
+            swing_rate: 15,
             vol: {
-              total: 177958,
-              grow: '-23.78',
+              total: 180315,
+              grow: '-28.51',
             },
             reputation: {
-              total: 312525.5,
-              grow: -30.3,
+              total: 315620,
+              grow: -34.6,
             },
             favorability: {
-              total: 0.51,
-              grow: '-17.74',
+              total: 0.5,
+              grow: '-18.03',
             },
-            social_rc: 0,
-            social_touch: 0,
-            diffusion: 86,
-            interaction: 31.4,
+            social_rc: 18.5,
+            social_touch: 1209,
+            diffusion: 88,
+            interaction: 30.2,
           },
         ],
         code: 0,

@@ -17,6 +17,7 @@ import {
   constituencyAPIs,
   partyAdvantageAPIs,
   satisfactionAPIs,
+  opleaderAPIs,
 } from './handlers'
 
 // eslint-disable-next-line import/prefer-default-export
@@ -38,4 +39,5 @@ export const server = setupServer(
   ...constituencyAPIs,
   ...partyAdvantageAPIs,
   ...satisfactionAPIs,
+  ...opleaderAPIs,
 )

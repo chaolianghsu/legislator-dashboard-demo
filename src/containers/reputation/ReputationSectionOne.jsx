@@ -147,7 +147,10 @@ function ReputationSectionOne() {
                   }}
                 />
                 <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                  {predictionData.person?.[0]?.name}
+                  {predictionData.person.find((p) => p.is_main).name}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: '1.6rem' }}>
+                  {predictionData.person.find((p) => p.is_main).party}
                 </Typography>
               </Stack>
             </CardContent>

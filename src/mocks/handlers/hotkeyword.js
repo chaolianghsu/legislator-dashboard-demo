@@ -26,7 +26,7 @@ const hotkeywordAPIs = [
           value: 69,
         },
         {
-          name: '羅智強',
+          name: '徐巧芯',
           value: 59,
         },
         {

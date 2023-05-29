@@ -10,7 +10,7 @@ const favorabilityAPIs = [
     ctx.json({
       result: [{
         params: {
-          q: '(羅智強|羅小強|羅痔瘡|羅智|羅智弱|羅自戕|騾子強)', tn: '羅智強', min: '20230216', max: '20230222', type: 'NEWS,SM,BBS,BLOG', subq: '', q_fields: ['title', 'content', 'title_tags', 'content_tags', 'hash_tags'], filter_chnls: [], filter_ads: '', realname: '政治儀表板2.0', token: 'HowDoYouTurnThisOn',
+          q: '(徐巧芯|羅小強|羅痔瘡|羅智|羅智弱|羅自戕|騾子強)', tn: '徐巧芯', min: '20230216', max: '20230222', type: 'NEWS,SM,BBS,BLOG', subq: '', q_fields: ['title', 'content', 'title_tags', 'content_tags', 'hash_tags'], filter_chnls: [], filter_ads: '', realname: '政治儀表板2.0', token: 'HowDoYouTurnThisOn',
         },
         data: [{
           g: [418, 500, 292, 188, 250, 609, 86], pc: '26.61%', senti: '正面', t: 2343,

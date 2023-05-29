@@ -17,12 +17,12 @@ const constituencyAPIs = [
               comp: [
                 {
                   name: '徐巧芯',
-                  image: null,
+                  image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
                   party: '國民黨',
                 },
                 {
                   name: '許淑華',
-                  image: null,
+                  image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
                   party: '民進黨',
                 },
               ],
@@ -85,12 +85,12 @@ const constituencyAPIs = [
                 {
                   name: '社群互動力',
                   pc: [
-                    0,
-                    0,
+                    60,
+                    40,
                   ],
                   value: [
-                    0,
-                    0,
+                    30,
+                    20,
                   ],
                 },
               ],

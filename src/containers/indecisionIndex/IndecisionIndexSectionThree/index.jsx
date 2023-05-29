@@ -3,6 +3,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { indecisionPalette } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 import { swingModuleAPI } from '@/apis'
+import { LoadingProgress } from '@/components'
 import IndecisionBlock from './IndecisionBlock'
 
 const leanColors = {
@@ -21,7 +22,7 @@ function IndecisionIndexSectionThree() {
   })
 
   if (isLoading || isFetching) {
-    return <>isLoading</>
+    return <LoadingProgress />
   }
   const { district, data } = swingData
   const villagesData = Object.keys(indecisionPalette).map((swing) => ({

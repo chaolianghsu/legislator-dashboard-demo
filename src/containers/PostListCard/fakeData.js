@@ -7,11 +7,11 @@ const fakeData = [
     src: 'FACEBOOK',
     time: '2023-01-15 08:34',
     senti: '中立',
-    author: '羅智強',
+    author: '徐巧芯',
     summary:
-      '對於政府不當的決策甚至貪瀆不法，必須善盡監督之責\n我有自信，結合優秀的人才，一起進軍國會，我們一定會成為制度進步的先鋒\n興利除弊，努力打造更好的台灣\n\n我會努力\n而各位、我最親愛的好朋友們\n請大家一起當<span class="hl">羅智強</span>的後盾',
+      '對於政府不當的決策甚至貪瀆不法，必須善盡監督之責\n我有自信，結合優秀的人才，一起進軍國會，我們一定會成為制度進步的先鋒\n興利除弊，努力打造更好的台灣\n\n我會努力\n而各位、我最親愛的好朋友們\n請大家一起當<span class="hl">徐巧芯</span>的後盾',
     url: 'https://www.facebook.com/164872546882726_764950844986705',
-    ch: '羅智強',
+    ch: '徐巧芯',
     lc: 34086,
     dc: 0,
     cc: 3113,
@@ -62,14 +62,14 @@ const fakeData = [
   {
     ref: '4e2654efe2d88c9d66b31b4f24130ca0',
     title:
-      '【下班瀚你聊】2023-01-11 Ep.30 羅智強點名：2024只有"這個男人"能贏賴神！蘇揆遲',
+      '【下班瀚你聊】2023-01-11 Ep.30 徐巧芯點名：2024只有"這個男人"能贏賴神！蘇揆遲',
     pt: '主文',
     src: 'YOUTUBE',
     time: '2023-01-11 20:00',
     senti: '正面',
     author: '風傳媒 The Storm Media',
     summary:
-      '<span class="hl">羅智強</span>:蘇揆態度成勝負關鍵! ... <span class="hl">羅智強</span>曝KMT 2024的隱憂是? ... <span class="hl">羅智強</span>曝藍營黃金陣容! ... <span class="hl">羅智強</span>獨揭KMT 2024的必勝王牌! ... <span class="hl">羅智強</span>的下班告白..',
+      '<span class="hl">徐巧芯</span>:蘇揆態度成勝負關鍵! ... <span class="hl">徐巧芯</span>曝KMT 2024的隱憂是? ... <span class="hl">徐巧芯</span>曝藍營黃金陣容! ... <span class="hl">徐巧芯</span>獨揭KMT 2024的必勝王牌! ... <span class="hl">徐巧芯</span>的下班告白..',
     url: 'https://www.youtube.com/watch?v=yyWu-QuX_gs',
     ch: '風傳媒 The Storm Media',
     lc: 10361,
@@ -82,14 +82,14 @@ const fakeData = [
   {
     ref: '57aa39f0fa72bfedbb445ed6e10d4011',
     title:
-      '羅智強選立委該去哪？\n\n看到智強 宣布參選立委，但選區未定……\n\n好多＜來這＞＜來這＞的強粉私訊來敲',
+      '徐巧芯選立委該去哪？\n\n看到智強 宣布參選立委，但選區未定……\n\n好多＜來這＞＜來這＞的強粉私訊來敲',
     pt: '主文',
     src: 'FACEBOOK',
     time: '2023-01-23 14:10',
     senti: '中立',
     author: '游淑慧 台北市議員',
     summary:
-      '<span class="hl">羅智強</span>選立委該去哪？ ... 看到智強 宣布參選立委，但選區未定……\n\n好多＜來這＞＜來這＞的強粉私訊來敲我，要我遊說強哥到這到那……看來戰將<span class="hl">羅智強</span>到那，都是能帶動熱情的強棒。 ... 很期待2018班的 <span class="hl">羅智強</span> 、 徐巧芯  和我，能再次在2024年併肩作戰，讓民進黨從台北開始、一路潰敗。',
+      '<span class="hl">徐巧芯</span>選立委該去哪？ ... 看到智強 宣布參選立委，但選區未定……\n\n好多＜來這＞＜來這＞的強粉私訊來敲我，要我遊說強哥到這到那……看來戰將<span class="hl">徐巧芯</span>到那，都是能帶動熱情的強棒。 ... 很期待2018班的 <span class="hl">徐巧芯</span> 、 徐巧芯  和我，能再次在2024年併肩作戰，讓民進黨從台北開始、一路潰敗。',
     url: 'https://www.facebook.com/725501890978632_718677953149191',
     ch: '游淑慧 台北市議員',
     lc: 12321,
@@ -109,7 +109,7 @@ const fakeData = [
     senti: '中立',
     author: '柯志恩',
     summary:
-      '先前與<span class="hl">羅智強</span>從科工館行腳到鳳山北門公園，印象中彼此講最多的一句話就是「小心路面!」',
+      '先前與<span class="hl">徐巧芯</span>從科工館行腳到鳳山北門公園，印象中彼此講最多的一句話就是「小心路面!」',
     url: 'https://www.facebook.com/911433142308383_742317103915345',
     ch: '柯志恩',
     lc: 22384,
@@ -121,16 +121,16 @@ const fakeData = [
   },
   {
     ref: 'e0d5f6bbfe31f13c3f63ead2bf865a0b',
-    title: '羅智強要拚的\n不只是立法委員\n更是政黨輪替',
+    title: '徐巧芯要拚的\n不只是立法委員\n更是政黨輪替',
     pt: '主文',
     src: 'FACEBOOK',
     time: '2023-01-16 14:19',
     senti: '中立',
-    author: '羅智強',
+    author: '徐巧芯',
     summary:
-      '<span class="hl">羅智強</span>要拚的\n不只是立法委員\n更是政黨輪替',
+      '<span class="hl">徐巧芯</span>要拚的\n不只是立法委員\n更是政黨輪替',
     url: 'https://www.facebook.com/164872546882726_765822031566253',
-    ch: '羅智強',
+    ch: '徐巧芯',
     lc: 17576,
     dc: 0,
     cc: 631,
@@ -148,7 +148,7 @@ const fakeData = [
     senti: '中立',
     author: '頭條開講',
     summary:
-      '主持人 #周玉琴\n\n前立法委員 #蔡正元\n前駐紐西蘭大使 #介文汲\n桃園市議員 #黃敬平\n前總統赴副秘書長 #<span class="hl">羅智強</span>\n前立法委員 #李勝峰\n時事評論員 #朱凱翔\n\n1.中國雷霆之怒加碼制裁!',
+      '主持人 #周玉琴\n\n前立法委員 #蔡正元\n前駐紐西蘭大使 #介文汲\n桃園市議員 #黃敬平\n前總統赴副秘書長 #<span class="hl">徐巧芯</span>\n前立法委員 #李勝峰\n時事評論員 #朱凱翔\n\n1.中國雷霆之怒加碼制裁!',
     url: 'https://www.youtube.com/watch?v=UROpMd9RBMg',
     ch: '頭條開講',
     lc: 22069,
@@ -161,14 +161,14 @@ const fakeData = [
   {
     ref: '3dd481c0ffb011abb4cdca68115fe8d8',
     title:
-      '＃最新聲援王世堅名單\n\n✅韓國瑜\n✅郭正亮\n✅蔡正元\n✅王淺秋\n✅侯漢廷\n✅羅智強\n✅高嘉瑜\n✅黃珊',
+      '＃最新聲援王世堅名單\n\n✅韓國瑜\n✅郭正亮\n✅蔡正元\n✅王淺秋\n✅侯漢廷\n✅徐巧芯\n✅高嘉瑜\n✅黃珊',
     pt: '主文',
     src: 'FBP',
     time: '2023-01-17 18:08',
     senti: '中立',
     author: '王浩宇',
     summary:
-      '＃最新聲援王世堅名單\n\n✅韓國瑜\n✅郭正亮\n✅蔡正元\n✅王淺秋\n✅侯漢廷\n✅<span class="hl">羅智強</span>\n✅高嘉瑜\n✅黃珊珊\n✅國橋汪導\n✅潘建志\n✅周偉航\n✅ 徐巧芯\n✅ 王鴻薇\n✅TVBS\n✅中天\n✅東森\n✅台海網（中共官媒',
+      '＃最新聲援王世堅名單\n\n✅韓國瑜\n✅郭正亮\n✅蔡正元\n✅王淺秋\n✅侯漢廷\n✅<span class="hl">徐巧芯</span>\n✅高嘉瑜\n✅黃珊珊\n✅國橋汪導\n✅潘建志\n✅周偉航\n✅ 徐巧芯\n✅ 王鴻薇\n✅TVBS\n✅中天\n✅東森\n✅台海網（中共官媒',
     url: 'https://www.facebook.com/1775451270_10210745283186271',
     ch: '王浩宇',
     lc: 2197,

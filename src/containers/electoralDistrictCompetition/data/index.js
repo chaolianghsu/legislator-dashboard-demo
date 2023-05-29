@@ -1,9 +1,9 @@
 const districtData = {
   politician: {
     political: '中國國民黨',
-    name: '徐巧馨',
+    name: '徐巧芯',
     fbid: 164872546882726,
-    kw: '(羅智強|羅小強|羅痔瘡|羅智|羅智弱|羅自戕|騾子強)',
+    kw: '(徐巧芯|羅小強|羅痔瘡|羅智|羅智弱|羅自戕|騾子強)',
     district: '大安區,文山區',
     city: '臺北市',
     image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
@@ -13,7 +13,7 @@ const districtData = {
       political: '民進黨',
       name: '許淑華',
       fbid: 100720289384352,
-      kw: '陳時中|陳clock|陳時鐘|陳鬧鐘|((時中)&(臺北|台北))',
+      kw: '許淑華|陳clock|陳時鐘|陳鬧鐘|((時中)&(臺北|台北))',
       district: '內湖區,南港區',
       city: '臺北市',
       image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
@@ -25,12 +25,12 @@ const competitionData = {
   許淑華: {
     comp: [
       {
-        name: '羅智強',
+        name: '徐巧芯',
         city: '臺北市',
         political: '中國國民黨',
       },
       {
-        name: '陳時中',
+        name: '許淑華',
         city: '臺北市',
         political: '民進黨',
       },

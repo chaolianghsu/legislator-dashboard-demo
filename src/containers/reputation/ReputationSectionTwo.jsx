@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import { shallow } from 'zustand/shallow'
 import dateFormat from 'dateformat'
 
+import { opleaderSeriesParser, opleaderCategoriesParser } from '@/utils'
 import {
   Card,
   TitleData,
@@ -16,7 +17,11 @@ import {
 } from '@/components'
 import { useGlobalDateStore } from '@/store'
 import {
-  hotkeywordAPI, diffusionAPI, interactionAPI, textlistAPI,
+  hotkeywordAPI,
+  diffusionAPI,
+  interactionAPI,
+  textlistAPI,
+  opleaderAPI,
 } from '@/apis'
 import { PostListCard } from '@/containers'
 
@@ -72,7 +77,13 @@ function ReputationSectionTwo() {
     isLoading: isGetTextListDataLoading,
     isFetching: isGetTextListDataFetching,
   } = useQuery({
-    queryKey: [textlistAPI.Url, formattedDateStart, formattedDateEnd, '', 'single-query'],
+    queryKey: [
+      textlistAPI.Url,
+      formattedDateStart,
+      formattedDateEnd,
+      '',
+      'single-query',
+    ],
     queryFn: () => textlistAPI.getData({
       from: formattedDateStart,
       to: formattedDateEnd,
@@ -80,6 +91,19 @@ function ReputationSectionTwo() {
       page: 1,
     }),
     select: (d) => d.result,
+  })
+
+  const {
+    data: opleaderData,
+    isLoading: isGetOpleaderDataLoading,
+    isFetching: isGetOpleaderDataFetching,
+  } = useQuery({
+    queryKey: [opleaderAPI.Url, formattedDateStart, formattedDateEnd],
+    queryFn: () => opleaderAPI.getData({
+      from: formattedDateStart,
+      to: formattedDateEnd,
+    }),
+    select: (d) => d.result[0],
   })
 
   useEffect(() => {
@@ -97,9 +121,11 @@ function ReputationSectionTwo() {
     || isGetDiffusionDataLoading
     || isGetInteractionDataFetching
     || isGetInteractionDataLoading
+    || isGetOpleaderDataLoading
+    || isGetOpleaderDataFetching
   ) {
     return (
-      <Box sx={{ marginTop: (theme) => (-2 * theme.spacing) }}>
+      <Box sx={{ marginTop: (theme) => -2 * theme.spacing }}>
         <LoadingProgress />
       </Box>
     )
@@ -147,11 +173,7 @@ function ReputationSectionTwo() {
             </DetailButton>
           </Stack>
         </Card>
-        <Card
-          title={(
-            <TitleData title="熱門文章" value="" />
-          )}
-        >
+        <Card title={<TitleData title="熱門文章" value="" />}>
           <Stack margin={1.5}>
             <PostListCard
               data={data?.slice(0, 5)}
@@ -187,17 +209,36 @@ function ReputationSectionTwo() {
               marginTop: '0.2rem',
             },
           }}
-          title={(
-            <TitleData title="關鍵領袖" value="" />
-          )}
+          title={<TitleData title="關鍵領袖" value="" />}
         >
           <Stack>
-            <Box sx={{ maxHeight: '665px', overflow: 'auto' }}>
-              <MultipleStackedBarChart />
+            <Box>
+              <MultipleStackedBarChart
+                chartContainerProps={{
+                  sx: {
+                    height: '665px',
+                  },
+                }}
+                categories={opleaderCategoriesParser(opleaderData.categories)}
+                series={opleaderSeriesParser(opleaderData.series)}
+                chartOptionOverrides={{
+                  chart: {
+                    type: 'bar',
+                    scrollablePlotArea: {
+                      minHeight: 900,
+                    },
+                    height: 665,
+                  },
+                }}
+              />
             </Box>
             <DetailButton
               onClick={() => navigate('/reputation/keyleader')}
-              sx={{ marginRight: '2rem', marginBottom: '1.5rem', marginTop: '3rem' }}
+              sx={{
+                marginRight: '2rem',
+                marginBottom: '1.5rem',
+                marginTop: '3rem',
+              }}
             >
               詳細資料
             </DetailButton>

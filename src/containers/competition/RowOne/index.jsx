@@ -32,7 +32,10 @@ function RowOne() {
                 }}
               />
               <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                徐巧馨
+                徐巧芯
+              </Typography>
+              <Typography variant="body1" sx={{ fontSize: '1.6rem' }}>
+                國民黨
               </Typography>
             </Stack>
           </Card>
