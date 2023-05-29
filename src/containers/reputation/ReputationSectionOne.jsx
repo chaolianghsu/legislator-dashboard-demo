@@ -138,7 +138,7 @@ function ReputationSectionOne() {
                 spacing={1}
               >
                 <Avatar
-                  src={predictionData.image}
+                  src={predictionData.person?.[0]?.image}
                   sx={{
                     width: 140,
                     height: 140,
@@ -147,7 +147,7 @@ function ReputationSectionOne() {
                   }}
                 />
                 <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                  {predictionData.name}
+                  {predictionData.person?.[0]?.name}
                 </Typography>
               </Stack>
             </CardContent>

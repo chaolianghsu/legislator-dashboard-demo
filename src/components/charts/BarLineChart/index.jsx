@@ -7,21 +7,15 @@ import genBarLineChartOption from './genBarLineChartOption'
 
 const BarLineChartPropTypes = {
   categories: PropTypes.arrayOf(PropTypes.string),
-  series: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      data: PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.number, PropTypes.shape({})]),
-      ),
-      color: PropTypes.string,
-    }),
-  ),
+  lineData: PropTypes.arrayOf(PropTypes.number),
+  barData: PropTypes.arrayOf(PropTypes.number),
   chartContainerProps: PropTypes.shape({}),
 }
 
 function BarLineChart({
   categories,
-  series,
+  lineData,
+  barData,
   chartContainerProps,
 }) {
   return (
@@ -30,7 +24,8 @@ function BarLineChart({
         highcharts={Highcharts}
         options={genBarLineChartOption({
           categories,
-          series,
+          lineData,
+          barData,
         })}
       />
     </Box>

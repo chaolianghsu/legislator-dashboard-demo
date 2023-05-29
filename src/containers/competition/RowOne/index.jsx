@@ -3,7 +3,6 @@ import {
 } from '@mui/material'
 
 import { TitleData, Card } from '@/components'
-import haha from '@/assets/haha.png'
 import Candidates from './Candidates'
 
 function RowOne() {
@@ -24,7 +23,7 @@ function RowOne() {
               spacing={1}
             >
               <Avatar
-                src={haha}
+                src="https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg"
                 sx={{
                   width: 140,
                   height: 140,
@@ -33,7 +32,7 @@ function RowOne() {
                 }}
               />
               <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                羅智強
+                徐巧馨
               </Typography>
             </Stack>
           </Card>
