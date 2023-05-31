@@ -5,25 +5,23 @@ import { Card } from '@/components'
 import { indecisionPalette } from '@/utils'
 
 const leanColorLinearGradientMap = {
-  1: 'linear-gradient(221deg, #1B7509 0%, #67CE23 100%)',
-  2: 'linear-gradient(221deg, #67CE23 0%, #caee68 100%)',
-  3: 'linear-gradient(221deg, #797979 0%, #C1C1C1 100%)',
-  4: 'linear-gradient(221deg, #4c82e7 0%, #70baec 100%)',
-  5: 'linear-gradient(221deg, #1343C9 0%, #5489EC 100%)',
+  2: 'linear-gradient(221deg, #1B7509 0%, #67CE23 100%)',
+  1: 'linear-gradient(221deg, #67CE23 0%, #caee68 100%)',
+  0: 'linear-gradient(221deg, #797979 0%, #C1C1C1 100%)',
+  [-1]: 'linear-gradient(221deg, #4c82e7 0%, #70baec 100%)',
+  [-2]: 'linear-gradient(221deg, #1343C9 0%, #5489EC 100%)',
 }
 
 function VillageCard({
-  name, swingVote, estimatedNumberOfVoters, kmtAdvantage,
+  name, swingVote, estimatedNumberOfVoters, color,
 }) {
-  const fakeLean = Math.abs(kmtAdvantage.toString().split('').at(-1) - 5)
-
   return (
     <Stack
       direction="row"
       sx={{
         color: 'white',
         padding: '3rem 1rem',
-        background: leanColorLinearGradientMap[fakeLean === 0 ? 1 : fakeLean],
+        background: leanColorLinearGradientMap[color],
         borderRadius: '1rem',
         alignItems: 'center',
       }}
@@ -63,7 +61,7 @@ VillageCard.propTypes = {
   name: PropTypes.string,
   swingVote: PropTypes.number,
   estimatedNumberOfVoters: PropTypes.number,
-  kmtAdvantage: PropTypes.number,
+  color: PropTypes.number,
 }
 
 function IndecisionBlock({ swing, villages }) {
@@ -92,7 +90,7 @@ function IndecisionBlock({ swing, villages }) {
                 name={village.name}
                 swingVote={village.swing_vote}
                 estimatedNumberOfVoters={village.estimated_number_of_voters}
-                kmtAdvantage={village.kmt_advantage}
+                color={village.color}
               />
             </Grid>
           ))}

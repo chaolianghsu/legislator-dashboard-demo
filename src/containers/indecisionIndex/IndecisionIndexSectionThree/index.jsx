@@ -6,7 +6,7 @@ const swingObjectPropType = {
   name: PropTypes.string,
   swing_vote: PropTypes.number,
   estimated_number_of_voters: PropTypes.number,
-  kmt_advantage: PropTypes.number,
+  color: PropTypes.number,
 }
 
 const IndecisionIndexSectionThreePropTypes = {
