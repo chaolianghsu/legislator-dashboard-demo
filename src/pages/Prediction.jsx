@@ -45,13 +45,12 @@ function Prediction() {
   if (isLoading || isFetching || isCompetitorsLoading || isCompetitorsFetching) {
     return <LoadingProgress />
   }
-
   return (
     <Stack spacing={2} sx={{ paddingBottom: '5rem' }}>
       <Stack direction="row" gap="1rem" justifyContent="center">
         <Stack alignItems="center" sx={{ color: 'customBlue.dark' }}>
           <Avatar
-            src={data.person[0].image}
+            src={competitors[0].image}
             sx={{
               width: 120,
               height: 120,
