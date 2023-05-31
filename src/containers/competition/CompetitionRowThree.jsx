@@ -1,7 +1,6 @@
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
-import { xlsxAPI } from '@/apis'
-import { useMutation } from '@tanstack/react-query'
-
+import PropTypes from 'prop-types'
+import { downloadAPI, baseUrl } from '@/apis'
 import {
   Card,
   PieChart,
@@ -9,41 +8,69 @@ import {
   ColChart,
   TitleData,
 } from '@/components'
-import { downloadFile } from '@/utils'
 
-const fakePieSeries = [
-  {
-    data: [
-      {
-        name: '首投族（20-24歲）',
-        y: 3334,
-      },
-      {
-        name: '壯年族 （25-40歲）',
-        y: 300,
-      },
-      {
-        name: '中年族（40-64歲）',
-        y: 203,
-      },
-      {
-        name: '老年族（65歲以上）',
-        y: 87,
-      },
-    ],
-  },
-]
-
-function CompetitionRowThree() {
-  const { mutate } = useMutation({
-    mutationFn: (data) => xlsxAPI.download({ area: data }),
-    onSuccess: (res) => {
-      downloadFile({
-        blob: res,
-      })
-    },
+const displayLegend = ['首投族（20-24歲）', '壯年族 （25-40歲）', '中年族（40-64歲）', '老年族（65歲以上）']
+const CompetitionRowThreePropTypes = {
+  voterProfile: PropTypes.shape({
+    '20-24': PropTypes.number,
+    '25-29': PropTypes.number,
+    '30-34': PropTypes.number,
+    '35-39': PropTypes.number,
+    '40-44': PropTypes.number,
+    '45-49': PropTypes.number,
+    '50-54': PropTypes.number,
+    '55-59': PropTypes.number,
+    '60-64': PropTypes.number,
+    '65-69': PropTypes.number,
+    '70-74': PropTypes.number,
+    '75-79': PropTypes.number,
+    '80-84': PropTypes.number,
+    '85-89': PropTypes.number,
+    '90-94': PropTypes.number,
+    '95-99': PropTypes.number,
+    100: PropTypes.number,
+    number_of_voters: PropTypes.number,
+    name: PropTypes.string,
+  }),
+}
+function CompetitionRowThree({ voterProfile }) {
+  const formattedVoterByInterval = Object.entries(voterProfile).reduce((acc, item) => {
+    const key = item[0]
+    const value = item[1]
+    const age = key.split('-')[1]
+    const count = Number((value * voterProfile.number_of_voters).toFixed())
+    // 20 - 24
+    if (age <= 24) {
+      return { ...acc, young: acc.young + count }
+    }
+    // 25 - 39
+    if (age <= 39) {
+      return { ...acc, notReallyYoung: acc.notReallyYoung + count }
+    }
+    // 41 - 64
+    if (age <= 64) {
+      return { ...acc, startToGetOld: acc.startToGetOld + count }
+    }
+    //  >=65
+    if (age >= 65) {
+      return { ...acc, old: acc.old + count }
+    }
+    return acc
+  }, {
+    young: 0,
+    notReallyYoung: 0,
+    startToGetOld: 0,
+    old: 0,
   })
-
+  const intervalValues = Object.values(formattedVoterByInterval)
+  const data = [
+    {
+      data: displayLegend.map((name, index) => ({
+        name,
+        y: intervalValues[index],
+      })),
+    },
+  ]
   return (
     <Grid
       container
@@ -64,12 +91,11 @@ function CompetitionRowThree() {
           }}
           title={<TitleData title="選民輪廓" value="" />}
         >
-          <PieChart series={fakePieSeries} />
+          <PieChart series={data} />
           <CardActions>
             <DetailButton
-              onClick={() => {
-                mutate('台北市')
-              }}
+            // 要測試下載要把baseUrl換實際api url
+              href={`${baseUrl}/${downloadAPI.Url}`}
               sx={{ marginRight: '2rem', width: '180px' }}
             >
               下載人口統計資料
@@ -136,6 +162,6 @@ function CompetitionRowThree() {
   )
 }
 
-CompetitionRowThree.propTypes = {}
+CompetitionRowThree.propTypes = CompetitionRowThreePropTypes
 
 export default CompetitionRowThree
