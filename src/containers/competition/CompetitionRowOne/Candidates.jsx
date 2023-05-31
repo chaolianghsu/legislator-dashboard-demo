@@ -2,17 +2,35 @@ import { useState } from 'react'
 import {
   Card, Stack, Avatar, Typography, Select, MenuItem, Tooltip, CardHeader, CardActions,
 } from '@mui/material'
+import PropTypes from 'prop-types'
 import { TitleData, StackedBarChartGroup, DetailButton } from '@/components'
-import { districtData, competitionData } from '@/containers/electoralDistrictCompetition/data'
 import InfoIcon from '@mui/icons-material/Info'
 import { descriptionConfigs } from '@/components/TitleData'
 import { useNavigate } from 'react-router-dom'
 
-function Candidates() {
-  const navigate = useNavigate()
+const candidatePropTypes = {
+  name: PropTypes.string,
+  image: PropTypes.string,
+  party: PropTypes.string,
+}
 
-  const { politician, opponents } = districtData
-  const [opponent, setOpponent] = useState(opponents[0].name)
+const candidateDataPropTypes = {
+  name: PropTypes.string,
+  pc: PropTypes.arrayOf(PropTypes.number),
+  value: PropTypes.arrayOf(PropTypes.number),
+}
+
+const CandidatesPropTypes = {
+  constituencyCompetition: PropTypes.shape({
+    comp: PropTypes.arrayOf(PropTypes.shape(candidatePropTypes)),
+    data: PropTypes.arrayOf(PropTypes.shape(candidateDataPropTypes)),
+  }),
+}
+function Candidates({ constituencyCompetition }) {
+  const navigate = useNavigate()
+  const candidate = constituencyCompetition.comp[0]
+  const opponents = constituencyCompetition.comp.slice(1)
+  const [opponent, setOpponent] = useState(constituencyCompetition.comp[1].name)
   return (
     <Card>
       <CardHeader title={(
@@ -27,7 +45,7 @@ function Candidates() {
         >
           <Stack alignItems="center">
             <Avatar
-              src={politician.image}
+              src={candidate.image}
               sx={{
                 width: 150,
                 height: 150,
@@ -35,7 +53,7 @@ function Candidates() {
                 border: '0.3rem solid #d8d8d8',
               }}
             />
-            <Typography>{politician.name}</Typography>
+            <Typography>{candidate.name}</Typography>
           </Stack>
           <Typography
             sx={{ color: 'customGridTextBlue.light', fontSize: '3rem' }}
@@ -78,7 +96,7 @@ function Candidates() {
           </Stack>
         </Stack>
         <Stack sx={{ width: '100%' }}>
-          {competitionData[opponent].data.slice(0, 2).map((index) => (
+          {constituencyCompetition.data.slice(0, 2).map((index) => (
             <StackedBarChartGroup
               key={index.name}
               title={(
@@ -123,6 +141,6 @@ function Candidates() {
   )
 }
 
-Candidates.propTypes = {}
+Candidates.propTypes = CandidatesPropTypes
 
 export default Candidates

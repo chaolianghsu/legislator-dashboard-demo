@@ -1,11 +1,35 @@
 import {
   Stack, Typography, Avatar, Unstable_Grid2 as Grid,
 } from '@mui/material'
-
+import PropTypes from 'prop-types'
 import { TitleData, Card } from '@/components'
 import Candidates from './Candidates'
 
-function CompetitionRowOne() {
+const candidatePropTypes = {
+  name: PropTypes.string,
+  image: PropTypes.string,
+  party: PropTypes.string,
+}
+
+const candidateDataPropTypes = {
+  name: PropTypes.string,
+  pc: PropTypes.arrayOf(PropTypes.number),
+  value: PropTypes.arrayOf(PropTypes.number),
+}
+
+const CompetitionRowOnePropTypes = {
+  name: PropTypes.string,
+  image: PropTypes.string,
+  marketShare: PropTypes.number,
+  constituencyCompetition: PropTypes.shape({
+    comp: PropTypes.arrayOf(PropTypes.shape(candidatePropTypes)),
+    data: PropTypes.arrayOf(PropTypes.shape(candidateDataPropTypes)),
+  }),
+}
+
+function CompetitionRowOne({
+  name, image, marketShare, constituencyCompetition,
+}) {
   return (
     <Grid
       container
@@ -23,7 +47,7 @@ function CompetitionRowOne() {
               spacing={1}
             >
               <Avatar
-                src="https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg"
+                src={image}
                 sx={{
                   width: 140,
                   height: 140,
@@ -32,7 +56,7 @@ function CompetitionRowOne() {
                 }}
               />
               <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                徐巧芯
+                {name}
               </Typography>
               <Typography variant="body1" sx={{ fontSize: '1.6rem' }}>
                 國民黨
@@ -46,7 +70,7 @@ function CompetitionRowOne() {
             title={(
               <TitleData
                 title="心佔率"
-                value="44.5%"
+                value={`${(marketShare.toFixed(2) * 100)}%`}
               />
           )}
           />
@@ -56,12 +80,12 @@ function CompetitionRowOne() {
         xs={12}
         md={8}
       >
-        <Candidates />
+        <Candidates constituencyCompetition={constituencyCompetition} />
       </Grid>
     </Grid>
   )
 }
 
-CompetitionRowOne.propTypes = {}
+CompetitionRowOne.propTypes = CompetitionRowOnePropTypes
 
 export default CompetitionRowOne
