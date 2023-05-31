@@ -13,21 +13,23 @@ const leanColorLinearGradientMap = {
 }
 
 function VillageCard({
-  villageName, diffVote, predictVote, lean,
+  name, swingVote, estimatedNumberOfVoters, kmtAdvantage,
 }) {
+  const fakeLean = Math.abs(kmtAdvantage.toString().split('').at(-1) - 5)
+
   return (
     <Stack
       direction="row"
       sx={{
         color: 'white',
         padding: '3rem 1rem',
-        background: leanColorLinearGradientMap[lean],
+        background: leanColorLinearGradientMap[fakeLean === 0 ? 1 : fakeLean],
         borderRadius: '1rem',
         alignItems: 'center',
       }}
     >
       <Typography sx={{ flex: '1', fontSize: '2.5rem', paddingX: '0.5rem' }}>
-        {villageName}
+        {name}
       </Typography>
       <Stack sx={{ flex: '1' }}>
         <Typography
@@ -39,7 +41,7 @@ function VillageCard({
           }}
         >
           搖擺選票
-          <span style={{ fontSize: '2rem' }}>{diffVote}</span>
+          <span style={{ fontSize: '2rem' }}>{swingVote}</span>
         </Typography>
         <Typography
           sx={{
@@ -50,7 +52,7 @@ function VillageCard({
           }}
         >
           預估投票人數
-          <span>{predictVote}</span>
+          <span>{estimatedNumberOfVoters}</span>
         </Typography>
       </Stack>
     </Stack>
@@ -58,10 +60,10 @@ function VillageCard({
 }
 
 VillageCard.propTypes = {
-  villageName: PropTypes.string,
-  diffVote: PropTypes.number,
-  predictVote: PropTypes.number,
-  lean: PropTypes.number,
+  name: PropTypes.string,
+  swingVote: PropTypes.number,
+  estimatedNumberOfVoters: PropTypes.number,
+  kmtAdvantage: PropTypes.number,
 }
 
 function IndecisionBlock({ swing, villages }) {
@@ -85,8 +87,13 @@ function IndecisionBlock({ swing, villages }) {
         </Typography>
         <Grid container spacing={1} sx={{ width: '100%' }}>
           {villages.map((village) => (
-            <Grid xs={12} lg={4} key={village.villageName}>
-              <VillageCard {...village} />
+            <Grid xs={12} lg={4} key={village.name}>
+              <VillageCard
+                name={village.name}
+                swingVote={village.swing_vote}
+                estimatedNumberOfVoters={village.estimated_number_of_voters}
+                kmtAdvantage={village.kmt_advantage}
+              />
             </Grid>
           ))}
         </Grid>
