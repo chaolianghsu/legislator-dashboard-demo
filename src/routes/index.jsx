@@ -11,7 +11,6 @@ import {
   Spread,
   Login,
   TextList,
-  HotKeyword,
   IndecisionIndex,
   Competition,
   Discuss,
@@ -36,7 +35,6 @@ function Routers() {
               <Route path="volume" element={<Volume />} />
               <Route path="favorability" element={<Favorability />} />
               <Route path="textlist" element={<TextList />} />
-              <Route path="hotkeyword" element={<HotKeyword />} />
               <Route path="keyleader" element={<KeyLeader />} />
             </Route>
             <Route path="competition">

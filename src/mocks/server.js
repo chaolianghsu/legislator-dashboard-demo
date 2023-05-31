@@ -2,7 +2,6 @@ import { setupServer } from 'msw/node'
 import {
   diffusionAPIs,
   favorabilityAPIs,
-  hotkeywordAPIs,
   interactionAPIs,
   predictModuleAPIs,
   reputationAPIs,
@@ -24,7 +23,6 @@ import {
 export const server = setupServer(
   ...diffusionAPIs,
   ...favorabilityAPIs,
-  ...hotkeywordAPIs,
   ...interactionAPIs,
   ...predictModuleAPIs,
   ...reputationAPIs,

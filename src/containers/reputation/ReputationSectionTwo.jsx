@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import {
   Typography, Unstable_Grid2 as Grid, Stack, Box,
 } from '@mui/material'
@@ -17,7 +16,6 @@ import {
 } from '@/components'
 import { useGlobalDateStore } from '@/store'
 import {
-  hotkeywordAPI,
   diffusionAPI,
   interactionAPI,
   textlistAPI,
@@ -38,16 +36,6 @@ function ReputationSectionTwo() {
 
   const formattedDateStart = dateFormat(startDate, 'yyyymmdd')
   const formattedDateEnd = dateFormat(endDate, 'yyyymmdd')
-
-  const {
-    data: wordCloudData,
-    isLoading: isGetWordCloudDataLoading,
-    isFetching: isGetWordCloudDataFetching,
-  } = useQuery({
-    queryKey: [hotkeywordAPI.Url, formattedDateStart, formattedDateEnd],
-    queryFn: () => hotkeywordAPI.getData({ from: formattedDateStart, to: formattedDateEnd }),
-    select: (d) => d.result,
-  })
 
   const {
     data: diffusionData,
@@ -106,18 +94,8 @@ function ReputationSectionTwo() {
     select: (d) => d.result[0],
   })
 
-  useEffect(() => {
-    if (wordCloudData) {
-      setTimeout(() => {
-        window.dispatchEvent(new Event('resize'))
-      }, 100)
-    }
-  }, [wordCloudData])
-
   if (
-    isGetWordCloudDataLoading
-    || isGetWordCloudDataFetching
-    || isGetDiffusionDataFetching
+    isGetDiffusionDataFetching
     || isGetDiffusionDataLoading
     || isGetInteractionDataFetching
     || isGetInteractionDataLoading

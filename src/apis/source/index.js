@@ -1,6 +1,5 @@
 export * as diffusionAPI from './diffusion'
 export * as favorabilityAPI from './favorability'
-export * as hotkeywordAPI from './hotkeyword'
 export * as interactionAPI from './interaction'
 export * as predictModuleAPI from './predictModule'
 export * as reputationAPI from './reputation'

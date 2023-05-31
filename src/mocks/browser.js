@@ -2,7 +2,6 @@ import { setupWorker } from 'msw'
 import {
   diffusionAPIs,
   favorabilityAPIs,
-  hotkeywordAPIs,
   interactionAPIs,
   predictModuleAPIs,
   reputationAPIs,
@@ -24,7 +23,6 @@ import {
 export const worker = setupWorker(
   ...diffusionAPIs,
   ...favorabilityAPIs,
-  ...hotkeywordAPIs,
   ...interactionAPIs,
   ...predictModuleAPIs,
   ...reputationAPIs,

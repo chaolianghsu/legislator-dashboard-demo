@@ -1,6 +1,5 @@
 export { default as diffusionAPIs } from './diffusion'
 export { default as favorabilityAPIs } from './favorability'
-export { default as hotkeywordAPIs } from './hotkeyword'
 export { default as interactionAPIs } from './interaction'
 export { default as predictModuleAPIs } from './predictModule'
 export { default as reputationAPIs } from './reputation'
