@@ -34,7 +34,7 @@ const fakePieSeries = [
   },
 ]
 
-function RowThree() {
+function CompetitionRowThree() {
   const { mutate } = useMutation({
     mutationFn: (data) => xlsxAPI.download({ area: data }),
     onSuccess: (res) => {
@@ -136,6 +136,6 @@ function RowThree() {
   )
 }
 
-RowThree.propTypes = {}
+CompetitionRowThree.propTypes = {}
 
-export default RowThree
+export default CompetitionRowThree

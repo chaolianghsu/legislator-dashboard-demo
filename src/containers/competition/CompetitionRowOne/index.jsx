@@ -5,7 +5,7 @@ import {
 import { TitleData, Card } from '@/components'
 import Candidates from './Candidates'
 
-function RowOne() {
+function CompetitionRowOne() {
   return (
     <Grid
       container
@@ -62,6 +62,6 @@ function RowOne() {
   )
 }
 
-RowOne.propTypes = {}
+CompetitionRowOne.propTypes = {}
 
-export default RowOne
+export default CompetitionRowOne

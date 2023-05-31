@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
 import { TitleData, DetailButton, Card } from '@/components'
 
-function RowTwo() {
+function CompetitionRowTwo() {
   const navigate = useNavigate()
   return (
     <Grid
@@ -42,6 +42,6 @@ function RowTwo() {
   )
 }
 
-RowTwo.propTypes = {}
+CompetitionRowTwo.propTypes = {}
 
-export default RowTwo
+export default CompetitionRowTwo
