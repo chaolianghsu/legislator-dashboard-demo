@@ -52,6 +52,7 @@ function Competition() {
     swing_vote: swingVote,
     // section three
     voter_profile: voterProfile,
+    historical,
   } = data
   return (
     <Grid2 container spacing={1.5} paddingBottom="2rem">
@@ -76,7 +77,7 @@ function Competition() {
         />
       </Grid2>
       <Grid2 xs={12}>
-        <CompetitionRowThree voterProfile={voterProfile} />
+        <CompetitionRowThree voterProfile={voterProfile} historical={historical} />
       </Grid2>
     </Grid2>
   )

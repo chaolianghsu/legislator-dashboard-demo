@@ -10,6 +10,12 @@ import {
 } from '@/components'
 
 const displayLegend = ['首投族（20-24歲）', '壯年族 （25-40歲）', '中年族（40-64歲）', '老年族（65歲以上）']
+
+const partyHistoricalDataPropTypes = {
+  value: PropTypes.arrayOf(PropTypes.number),
+  year: PropTypes.arrayOf(PropTypes.number),
+}
+
 const CompetitionRowThreePropTypes = {
   voterProfile: PropTypes.shape({
     '20-24': PropTypes.number,
@@ -32,8 +38,13 @@ const CompetitionRowThreePropTypes = {
     number_of_voters: PropTypes.number,
     name: PropTypes.string,
   }),
+  historical: PropTypes.shape({
+    國民黨: PropTypes.shape(partyHistoricalDataPropTypes),
+    民進黨: PropTypes.shape(partyHistoricalDataPropTypes),
+    無籍黨: PropTypes.shape(partyHistoricalDataPropTypes),
+  }),
 }
-function CompetitionRowThree({ voterProfile }) {
+function CompetitionRowThree({ voterProfile, historical }) {
   const formattedVoterByInterval = Object.entries(voterProfile).reduce((acc, item) => {
     const key = item[0]
     const value = item[1]
@@ -71,6 +82,13 @@ function CompetitionRowThree({ voterProfile }) {
       })),
     },
   ]
+
+  const historicalChartData = Object.entries(historical).map((item) => ({
+    name: item[0],
+    data: item[1].value,
+  }))
+
+  const previousYears = historical['國民黨'].year
   return (
     <Grid
       container
@@ -117,24 +135,7 @@ function CompetitionRowThree({ voterProfile }) {
           title={<TitleData title="歷史模型" value="" />}
         >
           <ColChart
-            series={[
-              {
-                name: '國民黨',
-                data: [1, 2, 4, 11],
-              },
-              {
-                name: '民進黨',
-                data: [3, 2, 1, 10],
-              },
-              {
-                name: '民眾黨',
-                data: [10, 10, 10, 9],
-              },
-              {
-                name: '無籍黨',
-                data: [10, 10, 10, 2],
-              },
-            ]}
+            series={historicalChartData}
             chartOptionOverrides={{
               legend: {
                 enabled: true,
@@ -152,7 +153,7 @@ function CompetitionRowThree({ voterProfile }) {
               },
               xAxis: {
                 type: 'category',
-                categories: [2008, 2012, 2016, 2020],
+                categories: previousYears,
               },
             }}
           />

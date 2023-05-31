@@ -10,13 +10,13 @@ const competitionModuleAPIs = [
     ctx.json({
       result: [
         {
-          date: '2023/04/29 ~ 2023/05/29',
-          update: '2023/05/29',
+          date: '2023/04/30 ~ 2023/05/30',
+          update: '2023/05/30',
           name: '徐巧芯',
           image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
           city: '台北市',
-          electoral_district: '第7選區',
-          market_share: 0.9547967136861663,
+          electoral_district: '台北市第7選區',
+          market_share: 0.9653321420986724,
           constituency_competition: {
             comp: [
               {
@@ -34,32 +34,32 @@ const competitionModuleAPIs = [
               {
                 name: '網路聲量',
                 pc: [
-                  95.5,
-                  4.5,
+                  96.5,
+                  3.5,
                 ],
                 value: [
-                  144920,
-                  6861,
+                  131819,
+                  4734,
                 ],
               },
               {
                 name: '好感度',
                 pc: [
-                  52.7,
-                  47.3,
+                  50,
+                  50,
                 ],
                 value: [
-                  0.48,
-                  0.43,
+                  0.47,
+                  0.47,
                 ],
               },
             ],
           },
-          public_satisfaction: 1.4788137700350186,
+          public_satisfaction: 1.4628517771845526,
           swing_vote: 59284,
           voter_profile: {
             100: 0,
-            name: '第7選區',
+            name: '台北市第7選區',
             number_of_voters: 234293,
             '20-24': 0.05,
             '25-29': 0.07,
@@ -77,6 +77,50 @@ const competitionModuleAPIs = [
             '85-89': 0.02,
             '90-94': 0.01,
             '95-99': 0,
+          },
+          historical: {
+            國民黨: {
+              year: [
+                2008,
+                2012,
+                2016,
+                2020,
+              ],
+              value: [
+                0.66,
+                0.63,
+                0.45,
+                0.46,
+              ],
+            },
+            民進黨: {
+              year: [
+                2008,
+                2012,
+                2016,
+                2020,
+              ],
+              value: [
+                0.32,
+                0,
+                0,
+                0.43,
+              ],
+            },
+            無黨籍: {
+              year: [
+                2008,
+                2012,
+                2016,
+                2020,
+              ],
+              value: [
+                0.02,
+                0.37,
+                0.55,
+                0.11,
+              ],
+            },
           },
         },
       ],
