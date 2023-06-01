@@ -26,11 +26,11 @@ function DiscussContainer() {
     (item) => +(item.satisfaction * 100).toFixed(2),
   )
   const barData = data.data?.map((item) => item.vol)
-  const value = (data.public_satisfaction * 100).toFixed(2)
+  const value = data.public_satisfaction.toFixed(2)
 
   return (
     <Box padding={1.5}>
-      <Card title={<TitleData title="八大施政好感度" value={`${value}%`} />}>
+      <Card title={<TitleData title="八大施政好感度" value={value} />}>
         <BarLineChart
           categories={categories}
           lineData={lineData}
