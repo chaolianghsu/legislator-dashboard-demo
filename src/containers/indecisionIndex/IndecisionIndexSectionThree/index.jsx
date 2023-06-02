@@ -18,7 +18,6 @@ const IndecisionIndexSectionThreePropTypes = {
     不搖擺: PropTypes.arrayOf(PropTypes.shape(swingObjectPropType)),
   }),
   electoralDistrict: PropTypes.string,
-  city: PropTypes.string,
 }
 
 const leanColors = {
@@ -31,7 +30,7 @@ const leanColors = {
 
 const indecision = ['極度搖擺', '中度搖擺', '輕度搖擺', '不搖擺']
 
-function IndecisionIndexSectionThree({ data, electoralDistrict, city }) {
+function IndecisionIndexSectionThree({ data, electoralDistrict }) {
   const villagesData = indecision.reduce((acc, item) => {
     if (data[item]) {
       return [
@@ -54,7 +53,6 @@ function IndecisionIndexSectionThree({ data, electoralDistrict, city }) {
             fontSize: '2rem',
           }}
         >
-          {city}
           {electoralDistrict}
           &nbsp; 共 &nbsp;
           <span

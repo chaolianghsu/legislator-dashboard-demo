@@ -39,7 +39,6 @@ function IndecisionIndex() {
     // section three
     village,
     electoral_district: electoralDistrict,
-    city,
   } = data
 
   return (
@@ -71,7 +70,6 @@ function IndecisionIndex() {
         partySuperiority={partySuperiority}
       />
       <IndecisionIndexSectionThree
-        city={city}
         data={village}
         electoralDistrict={electoralDistrict}
       />
