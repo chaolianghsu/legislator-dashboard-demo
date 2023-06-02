@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import genStackedBarChartOption from './genStackedBarChartOption'
 
 const StackedBarChartGroupPropTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.nodes]),
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   series: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

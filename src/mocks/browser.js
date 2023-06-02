@@ -2,7 +2,6 @@ import { setupWorker } from 'msw'
 import {
   diffusionAPIs,
   favorabilityAPIs,
-  hotkeywordAPIs,
   interactionAPIs,
   predictModuleAPIs,
   reputationAPIs,
@@ -11,20 +10,19 @@ import {
   textlistAPIs,
   volumeAPIs,
   authAPIs,
-  xlsxAPIs,
   swingModuleAPIs,
   competitorAPIs,
   constituencyAPIs,
   partyAdvantageAPIs,
   satisfactionAPIs,
   opleaderAPIs,
+  competitionModuleAPIs,
 } from './handlers'
 
 // eslint-disable-next-line import/prefer-default-export
 export const worker = setupWorker(
   ...diffusionAPIs,
   ...favorabilityAPIs,
-  ...hotkeywordAPIs,
   ...interactionAPIs,
   ...predictModuleAPIs,
   ...reputationAPIs,
@@ -33,11 +31,11 @@ export const worker = setupWorker(
   ...textlistAPIs,
   ...volumeAPIs,
   ...authAPIs,
-  ...xlsxAPIs,
   ...swingModuleAPIs,
   ...competitorAPIs,
   ...constituencyAPIs,
   ...partyAdvantageAPIs,
   ...satisfactionAPIs,
   ...opleaderAPIs,
+  ...competitionModuleAPIs,
 )

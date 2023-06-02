@@ -1,8 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
+import PropTypes from 'prop-types'
 import { TitleData, DetailButton, Card } from '@/components'
 
-function RowTwo() {
+const CompetitionRowTwoPropTypes = {
+  publicSatisfaction: PropTypes.number,
+  swingVote: PropTypes.number,
+}
+
+function CompetitionRowTwo({ publicSatisfaction, swingVote }) {
+  const satisfactionToPercent = publicSatisfaction.toFixed(2)
   const navigate = useNavigate()
   return (
     <Grid
@@ -11,7 +18,7 @@ function RowTwo() {
     >
       <Grid xs={12} md={6}>
         <Card
-          title={<TitleData title="八大施政好感度" value="76.8" />}
+          title={<TitleData title="八大施政好感度" value={satisfactionToPercent} />}
         >
           <CardActions>
             <DetailButton
@@ -26,7 +33,7 @@ function RowTwo() {
       <Grid xs={12} md={6}>
         <Card
           sx={{ height: '100%' }}
-          title={<TitleData value={(24777).toLocaleString()} title="搖擺人數" />}
+          title={<TitleData value={swingVote.toLocaleString()} title="搖擺人數" />}
         >
           <CardActions>
             <DetailButton
@@ -42,6 +49,6 @@ function RowTwo() {
   )
 }
 
-RowTwo.propTypes = {}
+CompetitionRowTwo.propTypes = CompetitionRowTwoPropTypes
 
-export default RowTwo
+export default CompetitionRowTwo
