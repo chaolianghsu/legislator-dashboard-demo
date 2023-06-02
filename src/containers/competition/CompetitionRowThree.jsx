@@ -9,7 +9,9 @@ import {
   TitleData,
 } from '@/components'
 
-const displayLegend = ['首投族（20-24歲）', '壯年族 （25-40歲）', '中年族（40-64歲）', '老年族（65歲以上）']
+const displayLegend = {
+  young: '首投族（20-24歲）', notReallyYoung: '壯年族 （25-40歲）', startToGetOld: '中年族（40-64歲）', old: '老年族（65歲以上）',
+}
 
 const partyHistoricalDataPropTypes = {
   value: PropTypes.arrayOf(PropTypes.number),
@@ -73,16 +75,14 @@ function CompetitionRowThree({ voterProfile, historical }) {
     startToGetOld: 0,
     old: 0,
   })
-  const intervalValues = Object.values(formattedVoterByInterval)
   const data = [
     {
-      data: displayLegend.map((name, index) => ({
-        name,
-        y: intervalValues[index],
+      data: Object.entries(displayLegend).map(([engName, chinName]) => ({
+        name: chinName,
+        y: formattedVoterByInterval[engName],
       })),
     },
   ]
-
   const historicalChartData = Object.entries(historical).map((item) => ({
     name: item[0],
     data: item[1].value,
@@ -113,7 +113,7 @@ function CompetitionRowThree({ voterProfile, historical }) {
           <CardActions>
             <DetailButton
             // 要測試下載要把baseUrl換實際api url
-              href={`${baseUrl}/${downloadAPI.Url}`}
+              href={`${baseUrl}${downloadAPI.Url}`}
               sx={{ marginRight: '2rem', width: '180px' }}
             >
               下載人口統計資料

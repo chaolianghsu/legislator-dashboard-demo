@@ -9,7 +9,7 @@ const CompetitionRowTwoPropTypes = {
 }
 
 function CompetitionRowTwo({ publicSatisfaction, swingVote }) {
-  const satisfactionToPercent = publicSatisfaction.toFixed(2) * 100
+  const satisfactionToPercent = publicSatisfaction.toFixed(2)
   const navigate = useNavigate()
   return (
     <Grid
@@ -18,7 +18,7 @@ function CompetitionRowTwo({ publicSatisfaction, swingVote }) {
     >
       <Grid xs={12} md={6}>
         <Card
-          title={<TitleData title="八大施政好感度" value="76.8" />}
+          title={<TitleData title="八大施政好感度" value={satisfactionToPercent} />}
         >
           <CardActions>
             <DetailButton
