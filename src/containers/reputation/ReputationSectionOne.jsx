@@ -109,7 +109,7 @@ function ReputationSectionOne() {
                   {reputationModuleData.name}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: '1.6rem' }}>
-                  國民黨
+                  {reputationModuleData.party || '國民黨'}
                 </Typography>
               </Stack>
             </CardContent>
