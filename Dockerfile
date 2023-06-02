@@ -1,8 +1,8 @@
 FROM node:16-alpine as builder
 
-COPY . /politics-dashboard-dev
+COPY . /legislator-dashboard
 
-WORKDIR /politics-dashboard-dev
+WORKDIR /legislator-dashboard
 
 RUN yarn
 # Build the app
@@ -14,4 +14,4 @@ RUN mkdir -p /var/www/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=builder /politics-dashboard-dev/dist /var/www/html
+COPY --from=builder /legislator-dashboard/dist /var/www/html
