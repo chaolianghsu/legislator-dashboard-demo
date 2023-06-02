@@ -11,7 +11,7 @@ function RowTwo() {
     >
       <Grid xs={12} md={6}>
         <Card
-          title={<TitleData title="八大施政好感度" value="76.8%" />}
+          title={<TitleData title="八大施政好感度" value="76.8" />}
         >
           <CardActions>
             <DetailButton

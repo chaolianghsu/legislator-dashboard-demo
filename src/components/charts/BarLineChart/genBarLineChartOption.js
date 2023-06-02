@@ -30,9 +30,8 @@ const genBarLineChartOption = (
         x: -12,
       },
       labels: {
-        format: '{value}%',
+        format: '{value}',
       },
-      max: 100,
     },
     {
       opposite: true,
