@@ -97,7 +97,7 @@ function LoginForm() {
           <ReCAPTCHA
             onChange={handleOnRecaptchChange}
             ref={recaptchaRef}
-            sitekey="6LcP1KckAAAAADlDotybpQJI2Ouzp8uj1jMffpS3"
+            sitekey={process.env.VITE_RECAPTCHA_KEY}
             hl="zh-TW"
           />
           {isSubmitted && isRobot && (

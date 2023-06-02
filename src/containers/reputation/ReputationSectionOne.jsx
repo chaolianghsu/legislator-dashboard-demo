@@ -21,10 +21,7 @@ import {
 } from '@/components'
 import { useGlobalDateStore } from '@/store'
 import {
-  volumeAPI,
-  reputationAPI,
-  favorabilityAPI,
-  predictModuleAPI,
+  reputationModuleAPI,
 } from '@/apis'
 
 function ReputationSectionOne() {
@@ -42,61 +39,14 @@ function ReputationSectionOne() {
   const formattedDateEnd = dateFormat(endDate, 'yyyymmdd')
 
   const {
-    data: predictionData,
-    isLoading: isGetPredictionLoading,
-    isFetching: isGetPredictionFetching,
+    data: reputationModuleData, isLoading, isFetching, isError,
   } = useQuery({
-    queryKey: [predictModuleAPI.Url, formattedDateStart, formattedDateEnd],
-    queryFn: () => predictModuleAPI.getData({
-      from: formattedDateStart,
-      to: formattedDateEnd,
-    }),
+    queryKey: [reputationModuleAPI.Url, formattedDateStart, formattedDateEnd],
+    queryFn: () => reputationModuleAPI.getData({ from: formattedDateStart, to: formattedDateEnd }),
     select: (d) => d.result[0],
   })
 
-  const {
-    data: reputationData,
-    isLoading: isGetReputationDataLoading,
-    isFetching: isGetReputationDataFetching,
-  } = useQuery({
-    queryKey: [reputationAPI.Url, formattedDateStart, formattedDateEnd],
-    queryFn: () => reputationAPI.getData({ from: formattedDateStart, to: formattedDateEnd }),
-    select: (d) => d.result[0],
-  })
-
-  const {
-    data: volumeData,
-    isLoading: isGetVolumeDataLoading,
-    isFetching: isGetVolumeDataFetching,
-  } = useQuery({
-    queryKey: [volumeAPI.Url, formattedDateStart, formattedDateEnd],
-    queryFn: () => volumeAPI.getData({ from: formattedDateStart, to: formattedDateEnd }),
-    select: (d) => d.result[0],
-  })
-
-  const {
-    data: favorabilityData,
-    isLoading: isGetFavorabilityDataLoading,
-    isFetching: isGetFavorabilityDataFetching,
-  } = useQuery({
-    queryKey: [favorabilityAPI.Url, formattedDateStart, formattedDateEnd],
-    queryFn: () => favorabilityAPI.getData({
-      from: formattedDateStart,
-      to: formattedDateEnd,
-    }),
-    select: (d) => d.result[0],
-  })
-
-  if (
-    isGetPredictionLoading
-    || isGetPredictionFetching
-    || isGetVolumeDataLoading
-    || isGetVolumeDataFetching
-    || isGetReputationDataLoading
-    || isGetReputationDataFetching
-    || isGetFavorabilityDataLoading
-    || isGetFavorabilityDataFetching
-  ) {
+  if (isLoading || isFetching) {
     return (
       <Box sx={{ marginTop: (theme) => (-2 * theme.spacing) }}>
         <LoadingProgress />
@@ -104,13 +54,29 @@ function ReputationSectionOne() {
     )
   }
 
-  const {
-    pn: favorabilityValue,
-    grow: favorabilityGrow,
-    data: favorabilityDataRaw,
-  } = favorabilityData
+  if (isError) {
+    return <>oops somethings wrong...</>
+  }
 
-  const sentiments = favorabilityDataRaw
+  const {
+    reputation: {
+      grow: reputationGrow,
+      total: reputationTotal,
+    },
+    favorability: {
+      data: favorabilityData,
+      grow: favorabilityGrow,
+      total: favorabilityTotal,
+    },
+    vol: {
+      date: volumeDate,
+      grow: volumeGrow,
+      total: volumeTotal,
+      g: volumeData,
+    },
+  } = reputationModuleData
+
+  const sentiments = favorabilityData
     .filter((sen) => sen.senti !== '中立')
     .map((sen) => ({
       name: `${sen.senti.split('')[0]}評`,
@@ -118,13 +84,6 @@ function ReputationSectionOne() {
       percent: sen.pc,
       color: sen.senti === '正面' ? '#8E9EE3' : '#1BFBE4',
     }))
-
-  const {
-    total: volumeTotal,
-    grow: volumeGrow,
-    date: categories,
-    data: volumeSeriesRaw,
-  } = volumeData
 
   return (
     <Grid container spacing={2}>
@@ -138,7 +97,7 @@ function ReputationSectionOne() {
                 spacing={1}
               >
                 <Avatar
-                  src={predictionData.person?.[0]?.image}
+                  src={reputationModuleData.image}
                   sx={{
                     width: 140,
                     height: 140,
@@ -147,10 +106,10 @@ function ReputationSectionOne() {
                   }}
                 />
                 <Typography variant="h5" sx={{ fontSize: '2.2rem' }}>
-                  {predictionData.person.find((p) => p.is_main).name}
+                  {reputationModuleData.name}
                 </Typography>
                 <Typography variant="body1" sx={{ fontSize: '1.6rem' }}>
-                  {predictionData.person.find((p) => p.is_main).party}
+                  {reputationModuleData.party || '國民黨'}
                 </Typography>
               </Stack>
             </CardContent>
@@ -166,8 +125,8 @@ function ReputationSectionOne() {
                 }}
               >
                 <TitleData
-                  markNumber={reputationData.reputation_grow}
-                  value={reputationData.reputation.toLocaleString()}
+                  markNumber={reputationGrow}
+                  value={reputationTotal}
                   unit="percentage"
                   title="聲譽值"
                   TitleStackProps={{
@@ -227,11 +186,8 @@ function ReputationSectionOne() {
             聲量趨勢
           </Typography>
           <LineChart
-            categories={categories}
-            series={volumeSeriesRaw.map((d) => ({
-              name: d.tn,
-              data: d.g,
-            }))}
+            categories={volumeDate}
+            series={[{ data: volumeData, name: '徐巧芯' }]}
           />
           <DetailButton
             onClick={() => navigate('/reputation/volume')}
@@ -254,7 +210,7 @@ function ReputationSectionOne() {
             >
               <TitleData
                 markNumber={favorabilityGrow}
-                value={favorabilityValue.toLocaleString()}
+                value={favorabilityTotal.toLocaleString()}
                 unit="percentage"
                 title="好感度"
               />
