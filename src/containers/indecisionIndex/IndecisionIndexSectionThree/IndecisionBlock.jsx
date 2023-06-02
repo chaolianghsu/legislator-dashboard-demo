@@ -5,15 +5,15 @@ import { Card } from '@/components'
 import { indecisionPalette } from '@/utils'
 
 const leanColorLinearGradientMap = {
-  1: 'linear-gradient(221deg, #1B7509 0%, #67CE23 100%)',
-  2: 'linear-gradient(221deg, #67CE23 0%, #caee68 100%)',
-  3: 'linear-gradient(221deg, #797979 0%, #C1C1C1 100%)',
-  4: 'linear-gradient(221deg, #4c82e7 0%, #70baec 100%)',
-  5: 'linear-gradient(221deg, #1343C9 0%, #5489EC 100%)',
+  2: 'linear-gradient(221deg, #1B7509 0%, #67CE23 100%)',
+  1: 'linear-gradient(221deg, #67CE23 0%, #caee68 100%)',
+  0: 'linear-gradient(221deg, #797979 0%, #C1C1C1 100%)',
+  [-1]: 'linear-gradient(221deg, #4c82e7 0%, #70baec 100%)',
+  [-2]: 'linear-gradient(221deg, #1343C9 0%, #5489EC 100%)',
 }
 
 function VillageCard({
-  villageName, diffVote, predictVote, lean,
+  name, swingVote, estimatedNumberOfVoters, color,
 }) {
   return (
     <Stack
@@ -21,13 +21,13 @@ function VillageCard({
       sx={{
         color: 'white',
         padding: '3rem 1rem',
-        background: leanColorLinearGradientMap[lean],
+        background: leanColorLinearGradientMap[color],
         borderRadius: '1rem',
         alignItems: 'center',
       }}
     >
       <Typography sx={{ flex: '1', fontSize: '2.5rem', paddingX: '0.5rem' }}>
-        {villageName}
+        {name}
       </Typography>
       <Stack sx={{ flex: '1' }}>
         <Typography
@@ -39,7 +39,7 @@ function VillageCard({
           }}
         >
           搖擺選票
-          <span style={{ fontSize: '2rem' }}>{diffVote}</span>
+          <span style={{ fontSize: '2rem' }}>{swingVote}</span>
         </Typography>
         <Typography
           sx={{
@@ -50,7 +50,7 @@ function VillageCard({
           }}
         >
           預估投票人數
-          <span>{predictVote}</span>
+          <span>{estimatedNumberOfVoters}</span>
         </Typography>
       </Stack>
     </Stack>
@@ -58,10 +58,10 @@ function VillageCard({
 }
 
 VillageCard.propTypes = {
-  villageName: PropTypes.string,
-  diffVote: PropTypes.number,
-  predictVote: PropTypes.number,
-  lean: PropTypes.number,
+  name: PropTypes.string,
+  swingVote: PropTypes.number,
+  estimatedNumberOfVoters: PropTypes.number,
+  color: PropTypes.number,
 }
 
 function IndecisionBlock({ swing, villages }) {
@@ -85,8 +85,13 @@ function IndecisionBlock({ swing, villages }) {
         </Typography>
         <Grid container spacing={1} sx={{ width: '100%' }}>
           {villages.map((village) => (
-            <Grid xs={12} lg={4} key={village.villageName}>
-              <VillageCard {...village} />
+            <Grid xs={12} lg={4} key={village.name}>
+              <VillageCard
+                name={village.name}
+                swingVote={village.swing_vote}
+                estimatedNumberOfVoters={village.estimated_number_of_voters}
+                color={village.color}
+              />
             </Grid>
           ))}
         </Grid>

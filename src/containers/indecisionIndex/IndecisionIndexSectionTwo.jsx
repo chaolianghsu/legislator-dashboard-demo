@@ -1,21 +1,29 @@
 import { Stack, Unstable_Grid2 as Grid } from '@mui/material'
-import { useQuery } from '@tanstack/react-query'
+import PropTypes from 'prop-types'
 import {
-  Card, TitleData, ColChart, LoadingProgress,
+  Card, TitleData, ColChart,
 } from '@/components'
-import { partyAdvantageAPI } from '@/apis'
 
-function IndecisionIndexSectionTwo() {
-  const { data: partyAdvantage, isLoading, isFetching } = useQuery({
-    queryKey: [partyAdvantageAPI.Url],
-    queryFn: () => partyAdvantageAPI.getData(),
-    select: (d) => d.result[0].party_advantage,
-  })
-
-  if (isLoading || isFetching) {
-    return <LoadingProgress />
-  }
-
+const IndecisionIndexSectionTwoPropTypes = {
+  estimatedNumberOfVoters: PropTypes.number,
+  electoralDistrictData: PropTypes.number,
+  avgVoterTurnout: PropTypes.number,
+  partySuperiority: PropTypes.shape({
+    name: PropTypes.string,
+    hight: PropTypes.number,
+    low: PropTypes.number,
+    superiority: PropTypes.number,
+  }),
+}
+function IndecisionIndexSectionTwo({
+  estimatedNumberOfVoters,
+  electoralDistrictData,
+  avgVoterTurnout,
+  partySuperiority,
+}) {
+  const {
+    name, hight, low, superiority,
+  } = partySuperiority
   return (
     <Grid container spacing={3}>
       <Grid xs={12} lg={4}>
@@ -33,20 +41,47 @@ function IndecisionIndexSectionTwo() {
               }}
               spacing={5}
             >
-              <TitleData value={(154909).toLocaleString()} unit="ticket" title="預估投票人數" />
-              <TitleData value={(226316).toLocaleString()} unit="ticket" title="2023選舉人數" />
-              <TitleData value="61.78%" unit="ticket" title="平均投票率" />
+              <TitleData
+                value={estimatedNumberOfVoters.toLocaleString()}
+                unit="ticket"
+                title="預估投票人數"
+              />
+              <TitleData
+                value={electoralDistrictData.toLocaleString()}
+                unit="ticket"
+                title="2023選舉人數"
+              />
+              <TitleData value={`${(avgVoterTurnout * 100).toFixed()}%`} title="平均投票率" />
             </Stack>
           </Stack>
         </Card>
       </Grid>
       <Grid xs={12} lg={8}>
         <Card sx={{ height: '100%' }}>
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={5} justifyContent="space-between">
+          <Stack
+            direction={{ xs: 'column', md: 'row' }}
+            spacing={5}
+            justifyContent="space-between"
+          >
             <Stack spacing={5}>
-              <TitleData value={(230809).toLocaleString()} unit="ticket" title="黨最高得票數" titlePrefix="國民" />
-              <TitleData value={(154090).toLocaleString()} unit="ticket" title="黨最低得票數" titlePrefix="國民" />
-              <TitleData value={partyAdvantage.toLocaleString()} unit="ticket" title="黨優勢" titlePrefix="國民" />
+              <TitleData
+                value={hight.toLocaleString()}
+                unit="ticket"
+                title="最高得票數"
+                titlePrefix={name}
+              />
+              <TitleData
+                value={low.toLocaleString()}
+                unit="ticket"
+                title="最低得票數"
+                titlePrefix={name}
+              />
+              <TitleData
+                value={superiority.toLocaleString()}
+                unit="ticket"
+                title="優勢"
+                titlePrefix={name}
+              />
             </Stack>
             <ColChart
               series={[
@@ -54,8 +89,8 @@ function IndecisionIndexSectionTwo() {
                   name: '筆數',
                   colorByPoint: true,
                   data: [
-                    { name: '最高得票', y: 2323 },
-                    { name: '最低得票', y: 1122 },
+                    { name: '最高得票', y: hight },
+                    { name: '最低得票', y: low },
                   ],
                 },
               ]}
@@ -68,13 +103,12 @@ function IndecisionIndexSectionTwo() {
               }}
             />
           </Stack>
-
         </Card>
       </Grid>
     </Grid>
   )
 }
 
-IndecisionIndexSectionTwo.propTypes = {}
+IndecisionIndexSectionTwo.propTypes = IndecisionIndexSectionTwoPropTypes
 
 export default IndecisionIndexSectionTwo

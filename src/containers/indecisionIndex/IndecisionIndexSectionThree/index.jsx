@@ -1,10 +1,24 @@
 import { Box, Stack, Typography } from '@mui/material'
-
-import { indecisionPalette } from '@/utils'
-import { useQuery } from '@tanstack/react-query'
-import { swingModuleAPI } from '@/apis'
-import { LoadingProgress } from '@/components'
+import PropTypes from 'prop-types'
 import IndecisionBlock from './IndecisionBlock'
+
+const swingObjectPropType = {
+  name: PropTypes.string,
+  swing_vote: PropTypes.number,
+  estimated_number_of_voters: PropTypes.number,
+  color: PropTypes.number,
+}
+
+const IndecisionIndexSectionThreePropTypes = {
+  data: PropTypes.shape({
+    total: PropTypes.number,
+    極度搖擺: PropTypes.arrayOf(PropTypes.shape(swingObjectPropType)),
+    中度搖擺: PropTypes.arrayOf(PropTypes.shape(swingObjectPropType)),
+    輕度搖擺: PropTypes.arrayOf(PropTypes.shape(swingObjectPropType)),
+    不搖擺: PropTypes.arrayOf(PropTypes.shape(swingObjectPropType)),
+  }),
+  electoralDistrict: PropTypes.string,
+}
 
 const leanColors = {
   藍營: '#1343C9',
@@ -14,29 +28,21 @@ const leanColors = {
   綠營: '#1B7509',
 }
 
-function IndecisionIndexSectionThree() {
-  const { data: swingData, isLoading, isFetching } = useQuery({
-    queryKey: [swingModuleAPI.Url],
-    queryFn: () => swingModuleAPI.getData(),
-    select: (d) => d.result[0],
-  })
+const indecision = ['極度搖擺', '中度搖擺', '輕度搖擺', '不搖擺']
 
-  if (isLoading || isFetching) {
-    return <LoadingProgress />
-  }
-  const { district, data } = swingData
-  const villagesData = Object.keys(indecisionPalette).map((swing) => ({
-    swing,
-    villages: data
-      .filter((village) => village.swing === swing)
-      .map((villageData) => ({
-        villageName: villageData.name,
-        diffVote: villageData.diff_vote,
-        predictVote: villageData.predict_vote,
-        lean: villageData.lean,
-      })),
-  }))
-
+function IndecisionIndexSectionThree({ data, electoralDistrict }) {
+  const villagesData = indecision.reduce((acc, item) => {
+    if (data[item]) {
+      return [
+        {
+          swing: item,
+          villages: [...data[item]],
+        },
+        ...acc,
+      ]
+    }
+    return acc
+  }, [])
   return (
     <Stack spacing={1} sx={{ padding: '1.5rem' }}>
       <Stack direction="row" justifyContent="space-between">
@@ -47,7 +53,7 @@ function IndecisionIndexSectionThree() {
             fontSize: '2rem',
           }}
         >
-          {district}
+          {electoralDistrict}
           &nbsp; 共 &nbsp;
           <span
             style={{
@@ -55,7 +61,7 @@ function IndecisionIndexSectionThree() {
               fontSize: '3rem',
             }}
           >
-            {33}
+            {data.total}
           </span>
           &nbsp; 里搖擺選票狀況
         </Typography>
@@ -90,13 +96,13 @@ function IndecisionIndexSectionThree() {
           ))}
         </Stack>
       </Stack>
-      {villagesData.map((villageData) => (villageData.villages.length > 0 ? (
+      {villagesData.map((villageData) => (
         <IndecisionBlock {...villageData} key={villageData.swing} />
-      ) : null))}
+      ))}
     </Stack>
   )
 }
 
-IndecisionIndexSectionThree.propTypes = {}
+IndecisionIndexSectionThree.propTypes = IndecisionIndexSectionThreePropTypes
 
 export default IndecisionIndexSectionThree

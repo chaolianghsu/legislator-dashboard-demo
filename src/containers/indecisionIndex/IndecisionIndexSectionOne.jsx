@@ -1,16 +1,39 @@
-import { Box, Stack, Typography } from '@mui/material'
-
+import {
+  Box, Stack, Typography,
+} from '@mui/material'
+import PropTypes from 'prop-types'
 import { Card, TitleData, BarChart } from '@/components'
 
 import { indecisionPalette } from '@/utils'
 
-const swing = '極度搖擺'
+const IndecisionIndexSectionOnePropTypes = {
+  swingVote: PropTypes.number,
+  historicalSwing: PropTypes.string,
+  swingVoterProportion: PropTypes.shape({
+    estimated_number_of_voters: PropTypes.number,
+    undecided_swing_votes: PropTypes.number,
+  }),
+}
 
-function IndecisionIndexSectionOne() {
+function IndecisionIndexSectionOne({
+  swingVote,
+  historicalSwing,
+  swingVoterProportion,
+}) {
+  const {
+    estimated_number_of_voters: estimatedVoters,
+    undecided_swing_votes: undecidedSwingVotes,
+  } = swingVoterProportion
+  const percentage = estimatedVoters === 0
+    ? ''
+    : ((undecidedSwingVotes / estimatedVoters) * 100).toFixed()
   return (
     <Box padding={1.5}>
       <Card>
-        <Stack direction={{ xs: 'column', lg: 'row' }} spacing={{ xs: 8, lg: 0 }}>
+        <Stack
+          direction={{ xs: 'column', lg: 'row' }}
+          spacing={{ xs: 8, lg: 0 }}
+        >
           <Stack
             sx={{
               flex: '1',
@@ -20,22 +43,26 @@ function IndecisionIndexSectionOne() {
             }}
             spacing={5}
           >
-            <TitleData value={(24777).toLocaleString()} unit="ticket" title="搖擺選票" />
+            <TitleData
+              value={swingVote.toLocaleString()}
+              unit="ticket"
+              title="搖擺選票"
+            />
             <TitleData
               title="歷史搖擺程度"
               customValue={(
                 <Box>
                   <Typography
                     sx={{
-                      backgroundColor: indecisionPalette[swing],
+                      backgroundColor: indecisionPalette[historicalSwing],
                       color: 'white',
                       padding: '0.5rem 3rem',
                     }}
                   >
-                    {swing}
+                    {historicalSwing}
                   </Typography>
                 </Box>
-            )}
+              )}
             />
           </Stack>
           <Stack
@@ -56,7 +83,7 @@ function IndecisionIndexSectionOne() {
               categories={['']}
               series={[
                 {
-                  data: [31000],
+                  data: [estimatedVoters],
                   name: '預估投票人數',
                   color: '#934DFC',
                   pointPlacement: -0.2,
@@ -74,11 +101,13 @@ function IndecisionIndexSectionOne() {
                       },
                       y: -20,
                       formatter() {
-                        return `<b style="color:#46BBFD">${30}%</b>`
+                        return `<b style="color:#46BBFD">${
+                          percentage ? `${percentage}%` : ''
+                        }</b>`
                       },
                     },
                   ],
-                  data: [5000],
+                  data: [undecidedSwingVotes],
                 },
               ]}
               chartOptionOverrides={{
@@ -95,10 +124,9 @@ function IndecisionIndexSectionOne() {
         </Stack>
       </Card>
     </Box>
-
   )
 }
 
-IndecisionIndexSectionOne.propTypes = {}
+IndecisionIndexSectionOne.propTypes = IndecisionIndexSectionOnePropTypes
 
 export default IndecisionIndexSectionOne
