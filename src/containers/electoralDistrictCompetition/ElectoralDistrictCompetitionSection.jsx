@@ -10,14 +10,17 @@ import {
 import InfoIcon from '@mui/icons-material/Info'
 
 import { useQuery } from '@tanstack/react-query'
-import { constituencyAPI } from '@/apis'
+import { constituencyAPI, competitionModuleAPI } from '@/apis'
 import { useGlobalDateStore } from '@/store'
 import { shallow } from 'zustand/shallow'
 import dateFormat from 'dateformat'
 import {
-  Card, TitleData, StackedBarChartGroup, LoadingProgress,
+  Card,
+  TitleData,
+  StackedBarChartGroup,
 } from '@/components'
 import { descriptionConfigs } from '@/components/TitleData'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const unitMap = {
   網路聲量: '筆',
@@ -39,24 +42,51 @@ function ElectoralDistrictCompetitionSection() {
   const formattedDateStart = dateFormat(startDate, 'yyyymmdd')
   const formattedDateEnd = dateFormat(endDate, 'yyyymmdd')
 
-  const { data, isLoading, isFetching } = useQuery({
-    queryKey: [constituencyAPI.Url, startDate, endDate],
-    queryFn: () => constituencyAPI.getData({ from: formattedDateStart, to: formattedDateEnd }),
+  // call這個api目的只是要拿到person_id，再透過person_id去call constituencyAPI
+  const {
+    data: personData,
+    isLoading: isPersonDataLoading,
+    isFetching: isPersonDataFetching,
+    isError: isPersonDataError,
+  } = useQuery({
+    queryKey: [competitionModuleAPI.Url],
+    queryFn: () => competitionModuleAPI.getData({
+      from: formattedDateStart,
+      to: formattedDateEnd,
+    }),
+    select: (d) => d.result[0].constituency_competition.comp,
+  })
+
+  const {
+    data, isLoading, isFetching, isError,
+  } = useQuery({
+    queryKey: [constituencyAPI.Url, formattedDateStart, formattedDateEnd, opponent],
+    queryFn: () => constituencyAPI.getData({
+      from: formattedDateStart,
+      to: formattedDateEnd,
+      id: opponent,
+    }),
     select: (d) => d.result[0],
   })
 
   useEffect(() => {
-    if (data) {
-      setOpponent(data.comp[1].name)
+    if (personData) {
+      setOpponent(personData[1].person_id)
     }
-  }, [data])
+  }, [personData])
 
-  if (isLoading || isFetching) {
-    return <LoadingProgress />
+  if (isLoading || isFetching || isPersonDataLoading || isPersonDataFetching) {
+    return (
+      <Stack justifyContent="center" alignItems="center" sx={{ width: '100%', height: '100%' }}>
+        <CircularProgress color="inherit" />
+      </Stack>
+    )
   }
 
+  if (isPersonDataError || isError) {
+    return <>oops, somethings wrong...</>
+  }
   const politician = data.comp[0]
-
   return (
     <Card>
       <TitleData title="選區競爭" value="" />
@@ -86,7 +116,7 @@ function ElectoralDistrictCompetitionSection() {
         </Typography>
         <Stack alignItems="center">
           <Avatar
-            src={data.comp.find((o) => o.name === opponent)?.image}
+            src={data.comp.find((o) => o.person_id === opponent)?.image}
             sx={{
               width: 180,
               height: 180,
@@ -111,8 +141,8 @@ function ElectoralDistrictCompetitionSection() {
               },
             }}
           >
-            {data.comp.slice(1).map((op) => (
-              <MenuItem value={op.name} key={op.name}>
+            {personData.slice(1).map((op) => (
+              <MenuItem value={op.person_id} key={op.name}>
                 {op.name}
               </MenuItem>
             ))}
@@ -133,7 +163,13 @@ function ElectoralDistrictCompetitionSection() {
                     </Typography>
                   )}
                 >
-                  <InfoIcon sx={{ width: '2rem', height: '2rem', color: 'customGray.main' }} />
+                  <InfoIcon
+                    sx={{
+                      width: '2rem',
+                      height: '2rem',
+                      color: 'customGray.main',
+                    }}
+                  />
                 </Tooltip>
               </Stack>
             )}

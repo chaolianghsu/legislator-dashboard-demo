@@ -6,6 +6,7 @@ import { TitleData, Card } from '@/components'
 import Candidates from './Candidates'
 
 const candidatePropTypes = {
+  person_id: PropTypes.number,
   name: PropTypes.string,
   image: PropTypes.string,
   party: PropTypes.string,
