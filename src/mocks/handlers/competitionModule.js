@@ -10,52 +10,60 @@ const competitionModuleAPIs = [
     ctx.json({
       result: [
         {
-          date: '2023/04/30 ~ 2023/05/30',
-          update: '2023/05/30',
+          date: '2023/05/06 ~ 2023/06/05',
+          update: '2023/06/05',
           name: '徐巧芯',
           image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
           city: '台北市',
           electoral_district: '台北市第7選區',
-          market_share: 0.9653321420986724,
+          market_share: 0.7179258311159015,
           constituency_competition: {
             comp: [
               {
+                person_id: 1,
                 name: '徐巧芯',
-                image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
                 party: '國民黨',
+                image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
               },
               {
+                person_id: 2,
                 name: '許淑華',
-                image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
                 party: '民進黨',
+                image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
+              },
+              {
+                person_id: 3,
+                name: '羅智強',
+                party: '國民黨',
+                image: null,
               },
             ],
             data: [
               {
                 name: '網路聲量',
                 pc: [
-                  96.5,
-                  3.5,
+                  97.6,
+                  2.4,
                 ],
                 value: [
-                  131819,
-                  4734,
+                  127887,
+                  3092,
                 ],
               },
               {
                 name: '好感度',
                 pc: [
-                  50,
-                  50,
+                  46.2,
+                  53.8,
                 ],
                 value: [
-                  0.47,
-                  0.47,
+                  0.42,
+                  0.49,
                 ],
               },
             ],
           },
-          public_satisfaction: 1.4628517771845526,
+          public_satisfaction: 1.492265272499596,
           swing_vote: 59284,
           voter_profile: {
             100: 0,
@@ -87,10 +95,10 @@ const competitionModuleAPIs = [
                 2020,
               ],
               value: [
-                0.66,
+                0.658,
                 0.63,
                 0.45,
-                0.46,
+                0.463,
               ],
             },
             民進黨: {
@@ -101,7 +109,7 @@ const competitionModuleAPIs = [
                 2020,
               ],
               value: [
-                0.32,
+                0.319,
                 0,
                 0,
                 0.43,
@@ -115,10 +123,10 @@ const competitionModuleAPIs = [
                 2020,
               ],
               value: [
-                0.02,
+                0.024,
                 0.37,
                 0.55,
-                0.11,
+                0.107,
               ],
             },
           },

@@ -7,7 +7,8 @@ const constituencyAPIs = [
   rest.get(Url, (req, res, ctx) => {
     const min = req.url.searchParams.get('min')
     const max = req.url.searchParams.get('max')
-    if (min && max) {
+    const id = req.url.searchParams.get('person_id')
+    if ((min && max) || id) {
       return res(
         ctx.delay(500),
         ctx.status(200),
@@ -16,81 +17,89 @@ const constituencyAPIs = [
             {
               comp: [
                 {
+                  person_id: 1,
                   name: '徐巧芯',
-                  image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
                   party: '國民黨',
+                  image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076006605.jpg',
                 },
                 {
+                  person_id: 2,
                   name: '許淑華',
-                  image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
                   party: '民進黨',
+                  image: 'https://legislator-dashboard-api.opyek.xyz/media/image/messageImage_1685076032143.jpg',
+                },
+                {
+                  person_id: 3,
+                  name: '羅智強',
+                  party: '國民黨',
+                  image: null,
                 },
               ],
               data: [
                 {
                   name: '網路聲量',
                   pc: [
-                    98.7,
-                    1.3,
+                    99.1,
+                    0.9,
                   ],
                   value: [
-                    37154,
-                    488,
+                    19903,
+                    186,
                   ],
                 },
                 {
                   name: '好感度',
                   pc: [
-                    39.4,
-                    60.6,
+                    41.8,
+                    58.2,
                   ],
                   value: [
                     0.41,
-                    0.63,
+                    0.57,
                   ],
                 },
                 {
                   name: '聲譽值',
                   pc: [
-                    98.3,
-                    1.7,
+                    98.5,
+                    1.5,
                   ],
                   value: [
-                    62688.3,
-                    1068.5,
+                    30889.3,
+                    466.8,
                   ],
                 },
                 {
                   name: '擴散廣度',
                   pc: [
-                    63.4,
-                    36.6,
+                    66,
+                    34,
                   ],
                   value: [
-                    64,
-                    37,
+                    68,
+                    35,
                   ],
                 },
                 {
                   name: '互動強度',
                   pc: [
-                    52.3,
-                    47.7,
+                    68.8,
+                    31.2,
                   ],
                   value: [
-                    29,
-                    26.4,
+                    33.5,
+                    15.2,
                   ],
                 },
                 {
                   name: '社群互動力',
                   pc: [
-                    60,
-                    40,
+                    58,
+                    42,
                   ],
                   value: [
-                    30,
-                    20,
+                    28344,
+                    20508,
                   ],
                 },
               ],
