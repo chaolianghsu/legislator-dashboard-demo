@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
 import PropTypes from 'prop-types'
 import { downloadAPI, baseUrl } from '@/apis'
@@ -149,6 +150,11 @@ function CompetitionRowThree({ voterProfile, historical }) {
                 title: {
                   text: '得票率',
                 },
+                labels: {
+                  formatter() {
+                    return `${this.value}%`
+                  },
+                },
               },
               xAxis: {
                 type: 'category',
@@ -156,7 +162,6 @@ function CompetitionRowThree({ voterProfile, historical }) {
               },
               tooltip: {
                 formatter() {
-                  // eslint-disable-next-line react/no-this-in-sfc
                   return `${this.key}<br/>得票率: <b>${this.y.toLocaleString()}%</b>`
                 },
               },
