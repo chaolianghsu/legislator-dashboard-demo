@@ -45,7 +45,7 @@ function ReputationSectionThree() {
 
   const socialTouchData = data.social_touch
   const socialTouchSeries = [
-    { ...socialTouchData.series[0], color: '#1BFBE4' },
+    { ...socialTouchData.series[0], color: '#00AEAE' },
   ]
   const socialTouchTotal = socialTouchData.total
 

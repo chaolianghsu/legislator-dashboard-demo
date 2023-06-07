@@ -82,7 +82,7 @@ function ReputationSectionOne() {
       name: `${sen.senti.split('')[0]}評`,
       value: sen.t,
       percent: sen.pc,
-      color: sen.senti === '正面' ? '#8E9EE3' : '#1BFBE4',
+      color: sen.senti === '正面' ? '#8E9EE3' : '#00AEAE',
     }))
 
   return (
@@ -126,7 +126,7 @@ function ReputationSectionOne() {
               >
                 <TitleData
                   markNumber={reputationGrow}
-                  value={reputationTotal}
+                  value={reputationTotal.toFixed()}
                   unit="percentage"
                   title="聲譽值"
                   TitleStackProps={{

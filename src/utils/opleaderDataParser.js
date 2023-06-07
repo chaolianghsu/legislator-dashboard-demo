@@ -1,6 +1,6 @@
 const chartConfigMap = {
   被按讚次數: {
-    color: 'rgb(27, 251, 228)',
+    color: '#00AEAE',
     legendIndex: 2,
   },
   被回文數: {
