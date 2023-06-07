@@ -1,6 +1,8 @@
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
 import PropTypes from 'prop-types'
-import { downloadAPI, baseUrl } from '@/apis'
+import { useQuery } from '@tanstack/react-query'
+import { downloadAPI } from '@/apis'
+import { downloadFile } from '@/utils'
 import {
   Card,
   PieChart,
@@ -10,7 +12,7 @@ import {
 } from '@/components'
 
 const displayLegend = {
-  young: '首投族（20-24歲）', notReallyYoung: '壯年族 （25-40歲）', startToGetOld: '中年族（40-64歲）', old: '老年族（65歲以上）',
+  young: '首投族（20-24歲）', stillYoung: '青壯年（25-34歲）', notReallyYoung: '壯年族（35-49歲）', startToGetOld: '中年族（50-64歲）', old: '老年族（65歲以上）',
 }
 
 const partyHistoricalDataPropTypes = {
@@ -47,6 +49,12 @@ const CompetitionRowThreePropTypes = {
   }),
 }
 function CompetitionRowThree({ voterProfile, historical }) {
+  const { refetch } = useQuery({
+    queryKey: [downloadAPI.Url],
+    queryFn: () => downloadAPI.getData(),
+    onSuccess: (res) => { downloadFile({ blob: res, name: '選民輪廓' }) },
+    enabled: false,
+  })
   const formattedVoterByInterval = Object.entries(voterProfile).reduce((acc, item) => {
     const key = item[0]
     const value = item[1]
@@ -56,11 +64,15 @@ function CompetitionRowThree({ voterProfile, historical }) {
     if (age <= 24) {
       return { ...acc, young: acc.young + count }
     }
-    // 25 - 39
-    if (age <= 39) {
+    // 25 - 34
+    if (age <= 34) {
+      return { ...acc, stillYoung: acc.stillYoung + count }
+    }
+    // 35 - 49
+    if (age <= 49) {
       return { ...acc, notReallyYoung: acc.notReallyYoung + count }
     }
-    // 41 - 64
+    // 50 - 64
     if (age <= 64) {
       return { ...acc, startToGetOld: acc.startToGetOld + count }
     }
@@ -71,6 +83,7 @@ function CompetitionRowThree({ voterProfile, historical }) {
     return acc
   }, {
     young: 0,
+    stillYoung: 0,
     notReallyYoung: 0,
     startToGetOld: 0,
     old: 0,
@@ -113,7 +126,7 @@ function CompetitionRowThree({ voterProfile, historical }) {
           <CardActions>
             <DetailButton
             // 要測試下載要把baseUrl換實際api url
-              href={`${baseUrl}${downloadAPI.Url}`}
+              onClick={() => { refetch() }}
               sx={{ marginRight: '2rem', width: '180px' }}
             >
               下載人口統計資料
@@ -140,7 +153,7 @@ function CompetitionRowThree({ voterProfile, historical }) {
               legend: {
                 enabled: true,
               },
-              colors: ['#00289E', '#419228', '#5CC0C1', '#A23D21'],
+              colors: ['#00289E', '#419228', '#00AEAE', '#A23D21'],
               chart: {
                 height: 450,
                 type: 'column',
