@@ -1,5 +1,5 @@
 const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
-  const colors = ['#46BBFF', '#641EFF', '#18FAE4', '#C9C9C9']
+  const colors = ['#46BBFF', '#EA7500', '#641EFF', '#00AEAE', '#C9C9C9']
   const total = series[0].data.reduce((sum, d) => sum + d.y, 0)
   const options = {
     chart: {

@@ -6,7 +6,7 @@ const genColChartOption = ({ series, chartOptionOverrides = {} }) => (
       type: 'column',
       height: 320,
     },
-    colors: ['#8E9EE3', '#1BFBE4', '#934DFC'],
+    colors: ['#8E9EE3', '#00AEAE', '#934DFC'],
     title: {
       text: '',
     },

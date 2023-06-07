@@ -81,7 +81,7 @@ const theme = createTheme({
       main: '#00CC27',
     },
     customLightBlue: {
-      main: '#1BFBE4',
+      main: '#00AEAE',
     },
     customGridTextBlue: {
       light: 'rgb(100, 177, 228)',

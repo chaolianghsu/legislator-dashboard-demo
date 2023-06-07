@@ -98,7 +98,7 @@ function TitleData({
       </Stack>
       <Typography
         variant="body1"
-        sx={{ color: 'customGray.light', fontSize: '1.5rem' }}
+        sx={{ color: '#4F4F4F', fontSize: '1.5rem' }}
       >
         {descriptionConfigs[title]}
       </Typography>
