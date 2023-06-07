@@ -3,7 +3,7 @@ import { Unstable_Grid2 as Grid, Stack, Typography } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { useNavigate } from 'react-router-dom'
-
+import { swingDisplayMap } from '@/utils'
 import { Card, CardTitle } from '@/components'
 import contentConfig from './contentConfig'
 
@@ -11,11 +11,26 @@ function PredictionCardGrid({ data }) {
   const navigate = useNavigate()
   const dataFormat = contentConfig.map((item) => {
     if (data[item.indName] || (data[item.indName] === 0)) {
+      const subTitleValue = data[item.indName].total ?? data[item.indName]
+      // map搖擺數呈現的文字
+      if (item.title === '選區搖擺率') {
+        return {
+          ...item,
+          subTitle: (
+            <>
+              {swingDisplayMap(subTitleValue) }
+            </>
+          ),
+          markNumber: data[item.indName].grow ?? null,
+        }
+      }
+      // 拿掉聲譽值的小數點
+      const subTitle = item.title === '聲譽值' ? subTitleValue.toFixed() : subTitleValue
       return {
         ...item,
         subTitle: (
           <>
-            {data[item.indName].total?.toLocaleString() ?? data[item.indName]?.toLocaleString()}
+            {subTitle.toLocaleString()}
             <Typography variant="body1" sx={{ marginLeft: '0.5rem' }}>
               {item.unit}
             </Typography>
