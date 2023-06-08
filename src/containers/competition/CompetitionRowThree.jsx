@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
 import PropTypes from 'prop-types'
 import { useQuery } from '@tanstack/react-query'
@@ -98,9 +99,8 @@ function CompetitionRowThree({ voterProfile, historical }) {
   ]
   const historicalChartData = Object.entries(historical).map((item) => ({
     name: item[0],
-    data: item[1].value,
+    data: item[1].value.map((value) => Number((value * 100).toFixed())),
   }))
-
   const previousYears = historical['國民黨'].year
   return (
     <Grid
@@ -163,10 +163,20 @@ function CompetitionRowThree({ voterProfile, historical }) {
                 title: {
                   text: '得票率',
                 },
+                labels: {
+                  formatter() {
+                    return `${this.value}%`
+                  },
+                },
               },
               xAxis: {
                 type: 'category',
                 categories: previousYears,
+              },
+              tooltip: {
+                formatter() {
+                  return `${this.key}<br/>得票率: <b>${this.y.toLocaleString()}%</b>`
+                },
               },
             }}
           />
