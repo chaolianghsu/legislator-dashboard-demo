@@ -3,10 +3,15 @@ import {
   Card, Stack, Avatar, Typography, Select, MenuItem, Tooltip, CardHeader, CardActions,
 } from '@mui/material'
 import PropTypes from 'prop-types'
-import { TitleData, StackedBarChartGroup, DetailButton } from '@/components'
+import {
+  TitleData, StackedBarChartGroup, DetailButton,
+} from '@/components'
 import InfoIcon from '@mui/icons-material/Info'
 import { descriptionConfigs } from '@/components/TitleData'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { constituencyAPI } from '@/apis'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const candidatePropTypes = {
   name: PropTypes.string,
@@ -30,7 +35,29 @@ function Candidates({ constituencyCompetition }) {
   const navigate = useNavigate()
   const candidate = constituencyCompetition.comp[0]
   const opponents = constituencyCompetition.comp.slice(1)
-  const [opponent, setOpponent] = useState(constituencyCompetition.comp[1].name)
+  const [opponent, setOpponent] = useState(constituencyCompetition.comp[1].person_id)
+
+  const {
+    data, isLoading, isFetching, isError,
+  } = useQuery({
+    queryKey: [opponent, constituencyAPI.Url],
+    queryFn: () => constituencyAPI.getData({ id: opponent }),
+    // 競爭模組只顯示網路聲量 & 好感度
+    select: (d) => d.result[0].data.filter((item) => (item.name === '網路聲量') || (item.name === '好感度')),
+  })
+
+  if (isLoading || isFetching) {
+    return (
+      <Stack justifyContent="center" alignItems="center" sx={{ width: '100%', height: '100%' }}>
+        <CircularProgress color="inherit" />
+      </Stack>
+    )
+  }
+
+  if (isError) {
+    return <>oops, somethings wrong...</>
+  }
+
   return (
     <Card>
       <CardHeader title={(
@@ -62,7 +89,7 @@ function Candidates({ constituencyCompetition }) {
           </Typography>
           <Stack alignItems="center">
             <Avatar
-              src={opponents.find((o) => o.name === opponent).image}
+              src={opponents.find((o) => o.person_id === opponent).image}
               sx={{
                 width: 150,
                 height: 150,
@@ -88,7 +115,7 @@ function Candidates({ constituencyCompetition }) {
               }}
             >
               {opponents.map((op) => (
-                <MenuItem value={op.name} key={op.name}>
+                <MenuItem value={op.person_id} key={op.name}>
                   {op.name}
                 </MenuItem>
               ))}
@@ -96,7 +123,7 @@ function Candidates({ constituencyCompetition }) {
           </Stack>
         </Stack>
         <Stack sx={{ width: '100%' }}>
-          {constituencyCompetition.data.slice(0, 2).map((index) => (
+          {data.map((index) => (
             <StackedBarChartGroup
               key={index.name}
               title={(
