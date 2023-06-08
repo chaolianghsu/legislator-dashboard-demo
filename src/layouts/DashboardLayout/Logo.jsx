@@ -10,7 +10,7 @@ function Logo() {
     >
       <img
         src={LogoImage}
-        alt="網戰動態數據儀表板"
+        alt="KEYPO立委選情數據儀表板"
         style={{
           width: '100%',
           height: '100%',
