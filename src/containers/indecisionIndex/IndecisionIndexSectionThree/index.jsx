@@ -26,7 +26,7 @@ const configs = [
     title: '優勢',
     description: (
       <Typography variant="body1">
-        <p>藍營：國民黨平均得票率&gt;70%</p>
+        <p>深藍：國民黨平均得票率&gt;70%</p>
         <p>淺藍：國民黨平均得票率55%~70%</p>
         <p>中立：藍綠平均得票率分別在45%~55%</p>
         <p>淺綠：民進黨平均得票率55%~70%</p>
