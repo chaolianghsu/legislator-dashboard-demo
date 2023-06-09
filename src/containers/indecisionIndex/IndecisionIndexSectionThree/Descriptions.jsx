@@ -1,8 +1,18 @@
 import PropTypes from 'prop-types'
 import {
-  Stack, Typography, Box, Tooltip,
+  Stack, Typography, Box,
 } from '@mui/material'
 import InfoIcon from '@mui/icons-material/Info'
+import { styled } from '@mui/material/styles'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 500,
+  },
+})
 
 const DescriptionsPropTypes = {
   title: PropTypes.string,
@@ -34,11 +44,11 @@ function Descriptions({ title, configs, description }) {
       >
         {title}
       </Typography>
-      <Tooltip
+      <CustomWidthTooltip
         title={description}
       >
         <InfoIcon sx={{ width: '2rem', height: '2rem', color: 'customGray.main' }} />
-      </Tooltip>
+      </CustomWidthTooltip>
       {configs.map((item) => (
         <Stack direction="row" alignItems="center" spacing={0.5} key={item.name}>
           <Typography variant="body2" sx={{ fontWeight: 'normal' }}>
