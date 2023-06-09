@@ -46,14 +46,6 @@ function Candidates({ constituencyCompetition }) {
     select: (d) => d.result[0].data.filter((item) => (item.name === '網路聲量') || (item.name === '好感度')),
   })
 
-  if (isLoading || isFetching) {
-    return (
-      <Stack justifyContent="center" alignItems="center" sx={{ width: '100%', height: '100%' }}>
-        <CircularProgress color="inherit" />
-      </Stack>
-    )
-  }
-
   if (isError) {
     return <>oops, somethings wrong...</>
   }
@@ -122,39 +114,45 @@ function Candidates({ constituencyCompetition }) {
             </Select>
           </Stack>
         </Stack>
-        <Stack sx={{ width: '100%' }}>
-          {data.map((index) => (
-            <StackedBarChartGroup
-              key={index.name}
-              title={(
-                <Stack direction="row" alignItems="center" gap="0.5rem">
-                  <Typography>{index.name}</Typography>
-                  <Tooltip
-                    title={(
-                      <Typography variant="body1" sx={{ color: 'white' }}>
-                        {descriptionConfigs[index.name]}
-                      </Typography>
+        {(isLoading || isFetching) ? (
+          <Stack justifyContent="center" alignItems="center" sx={{ width: '100%', height: '100%' }}>
+            <CircularProgress color="inherit" />
+          </Stack>
+        ) : (
+          <Stack sx={{ width: '100%' }}>
+            {data.map((index) => (
+              <StackedBarChartGroup
+                key={index.name}
+                title={(
+                  <Stack direction="row" alignItems="center" gap="0.5rem">
+                    <Typography>{index.name}</Typography>
+                    <Tooltip
+                      title={(
+                        <Typography variant="body1" sx={{ color: 'white' }}>
+                          {descriptionConfigs[index.name]}
+                        </Typography>
                 )}
-                  >
-                    <InfoIcon sx={{ width: '2rem', height: '2rem', color: 'customGray.main' }} />
-                  </Tooltip>
-                </Stack>
+                    >
+                      <InfoIcon sx={{ width: '2rem', height: '2rem', color: 'customGray.main' }} />
+                    </Tooltip>
+                  </Stack>
           )}
-              series={[
-                {
-                  data: [index.pc[1]],
-                  name: '2',
-                  color: '#0079BF',
-                },
-                {
-                  data: [index.pc[0]],
-                  name: '1',
-                  color: '#46BBFF',
-                },
-              ]}
-            />
-          ))}
-        </Stack>
+                series={[
+                  {
+                    data: [index.pc[1]],
+                    name: '2',
+                    color: '#0079BF',
+                  },
+                  {
+                    data: [index.pc[0]],
+                    name: '1',
+                    color: '#46BBFF',
+                  },
+                ]}
+              />
+            ))}
+          </Stack>
+        )}
       </Stack>
       <CardActions>
         <DetailButton

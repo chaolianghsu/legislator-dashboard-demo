@@ -1,6 +1,7 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 import IndecisionBlock from './IndecisionBlock'
+import Descriptions from './Descriptions'
 
 const swingObjectPropType = {
   name: PropTypes.string,
@@ -20,13 +21,71 @@ const IndecisionIndexSectionThreePropTypes = {
   electoralDistrict: PropTypes.string,
 }
 
-const leanColors = {
-  藍營: '#1343C9',
-  泛藍: '#4c82e7',
-  中立: '#797979',
-  泛綠: '#548C00',
-  綠營: '#1B7509',
-}
+const configs = [
+  {
+    title: '優勢',
+    description: (
+      <Typography variant="body1">
+        <p>藍營：國民黨平均得票率&gt;70%</p>
+        <p>泛藍：國民黨平均得票率55%~70%</p>
+        <p>中立：藍綠平均得票率分別在45%~55%</p>
+        <p>泛綠：民進黨平均得票率55%~70%</p>
+        <p>深綠：民進黨平均得票率&gt;70%</p>
+      </Typography>
+    ),
+    data: [
+      {
+        name: '深藍',
+        color: '#1343C9',
+      },
+      {
+        name: '淺藍',
+        color: '#4c82e7',
+      },
+      {
+        name: '中立',
+        color: '#797979',
+      },
+      {
+        name: '淺綠',
+        color: '#548C00',
+      },
+      {
+        name: '綠營',
+        color: '#1B7509',
+      },
+    ],
+  },
+  {
+    title: '搖擺率',
+    description: (
+      <Typography variant="body1">
+        <p>極度搖擺：過去四次選舉改變過三次支持政黨</p>
+        <p>中度搖擺：過去四次選舉改變過二次支持政黨</p>
+        <p>輕度搖擺：過去四次選舉改變過二次支持政黨</p>
+        <p>不搖擺：過去四次選舉都是相同政黨獲勝</p>
+      </Typography>
+    ),
+    data: [
+      {
+        name: '極度搖擺',
+        color: '#CE0000',
+      },
+      {
+        name: '中度搖擺',
+        color: '#F79116',
+      },
+      {
+        name: '輕度搖擺',
+        color: '#D8C644',
+      },
+      {
+        name: '不搖擺',
+        color: '#C6C6C6',
+      },
+    ],
+  },
+]
 
 const indecision = ['極度搖擺', '中度搖擺', '輕度搖擺', '不搖擺']
 
@@ -45,7 +104,13 @@ function IndecisionIndexSectionThree({ data, electoralDistrict }) {
   }, [])
   return (
     <Stack spacing={1} sx={{ padding: '1.5rem' }}>
-      <Stack direction="row" justifyContent="space-between">
+      <Stack
+        direction={{
+          xs: 'column',
+          xl: 'row',
+        }}
+        justifyContent="space-between"
+      >
         <Typography
           variant="h4"
           sx={{
@@ -66,33 +131,22 @@ function IndecisionIndexSectionThree({ data, electoralDistrict }) {
           &nbsp; 里搖擺選票狀況
         </Typography>
         <Stack
-          variant="h4"
-          sx={{
-            color: 'customGray.main',
-            fontSize: '2rem',
+          direction={{
+            xs: 'column',
+            lg: 'row',
           }}
-          direction="row"
-          spacing={1}
-          alignItems="center"
+          spacing={{
+            xs: 0,
+            lg: 4,
+          }}
         >
-          <Typography
-            variant="h4"
-            sx={{
-              color: 'customGray.main',
-              fontSize: '2rem',
-            }}
-          >
-            優勢
-          </Typography>
-          {Object.entries(leanColors).map(([k, v]) => (
-            <Stack direction="row" alignItems="center" spacing={0.5} key={k}>
-              <Typography variant="body2" sx={{ fontWeight: 'normal' }}>
-                {k}
-              </Typography>
-              <Box
-                sx={{ backgroundColor: v, height: '1.5rem', width: '1.5rem' }}
-              />
-            </Stack>
+          {configs.map((config) => (
+            <Descriptions
+              key={config.title}
+              configs={config.data}
+              description={config.description}
+              title={config.title}
+            />
           ))}
         </Stack>
       </Stack>
