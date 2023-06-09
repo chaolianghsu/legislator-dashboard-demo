@@ -25,7 +25,7 @@ function PredictionCardGrid({ data }) {
         }
       }
       // 拿掉聲譽值的小數點
-      const subTitle = item.title === '聲譽值' ? subTitleValue.toFixed() : subTitleValue
+      const subTitle = item.title === '聲譽值' ? Math.floor(subTitleValue).toLocaleString() : subTitleValue
       return {
         ...item,
         subTitle: (
