@@ -126,7 +126,7 @@ function ReputationSectionOne() {
               >
                 <TitleData
                   markNumber={reputationGrow}
-                  value={reputationTotal.toFixed()}
+                  value={Math.floor(reputationTotal).toLocaleString()}
                   unit="percentage"
                   title="聲譽值"
                   TitleStackProps={{
