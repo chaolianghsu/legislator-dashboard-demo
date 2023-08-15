@@ -17,6 +17,7 @@ import {
   satisfactionAPIs,
   opleaderAPIs,
   competitionModuleAPIs,
+  downloadAPIs,
 } from './handlers'
 
 // eslint-disable-next-line import/prefer-default-export
@@ -38,4 +39,5 @@ export const worker = setupWorker(
   ...satisfactionAPIs,
   ...opleaderAPIs,
   ...competitionModuleAPIs,
+  ...downloadAPIs,
 )
