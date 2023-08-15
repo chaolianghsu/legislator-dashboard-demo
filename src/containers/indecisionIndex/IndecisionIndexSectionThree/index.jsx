@@ -68,20 +68,20 @@ const configs = [
     ),
     data: [
       {
-        name: '極度搖擺',
-        color: '#CE0000',
-      },
-      {
-        name: '中度搖擺',
-        color: '#F79116',
+        name: '不搖擺',
+        color: '#C6C6C6',
       },
       {
         name: '輕度搖擺',
         color: '#D8C644',
       },
       {
-        name: '不搖擺',
-        color: '#C6C6C6',
+        name: '中度搖擺',
+        color: '#F79116',
+      },
+      {
+        name: '極度搖擺',
+        color: '#CE0000',
       },
     ],
   },
