@@ -5,11 +5,11 @@ import { Card } from '@/components'
 import { indecisionPalette } from '@/utils'
 
 const leanColorLinearGradientMap = {
-  2: 'linear-gradient(221deg, #1B7509 0%, #67CE23 100%)',
-  1: 'linear-gradient(221deg, #548C00 0%, #73BF00 100%)',
+  [-2]: 'linear-gradient(221deg, #1B7509 0%, #67CE23 100%)',
+  [-1]: 'linear-gradient(221deg, #548C00 0%, #73BF00 100%)',
   0: 'linear-gradient(221deg, #797979 0%, #C1C1C1 100%)',
-  [-1]: 'linear-gradient(221deg, #0066CC 0%, #66B3FF 100%)',
-  [-2]: 'linear-gradient(221deg, #1343C9 0%, #5489EC 100%)',
+  1: 'linear-gradient(221deg, #0066CC 0%, #66B3FF 100%)',
+  2: 'linear-gradient(221deg, #1343C9 0%, #5489EC 100%)',
 }
 
 function VillageCard({

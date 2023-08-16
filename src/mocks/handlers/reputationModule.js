@@ -245,7 +245,7 @@ const reputationModuleAPIs = [
             ],
             series: [
               {
-                name: '社群互動數',
+                name: '社群互動力',
                 data: [
                   0,
                   0,
