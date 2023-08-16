@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   TextField, Stack, Button, Typography, Box,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { axiosInstance } from '@/apis'
 import { getToken } from '@/apis/source/auth'
@@ -45,6 +45,12 @@ function LoginForm() {
     if (isRobot) return
     mutate({ email: d.account, password: d.password })
   }
+
+  const qc = useQueryClient()
+
+  useEffect(() => {
+    qc.clear()
+  }, [qc])
 
   return (
     <Stack
