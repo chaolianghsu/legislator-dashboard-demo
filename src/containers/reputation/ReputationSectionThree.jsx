@@ -85,7 +85,7 @@ function ReputationSectionThree() {
           <Grid xs={12} md={6} lg={4}>
             <Stack>
               <TitleData
-                title="社群互動率"
+                title="社群互動力"
                 value={socialReactionCountTotal.toLocaleString()}
               />
               <BarChart
