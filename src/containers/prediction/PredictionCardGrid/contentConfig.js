@@ -54,8 +54,7 @@ const contentConfig = [
     imgSrc: InteractiveIcon,
     linkTo: '/reputation',
     unit: '',
-    indName: 'interaction',
-
+    indName: 'social_rc',
   }, {
     title: '擴散廣度',
     description: '相關新聞出現的頻道數量。',
@@ -69,7 +68,7 @@ const contentConfig = [
     imgSrc: IntensityIcon,
     linkTo: '/reputation/spread',
     unit: '則',
-    indName: 'social_rc',
+    indName: 'interaction',
   }, {
     title: '粉絲觸及力',
     description: '粉專觸及的粉絲人數及粉絲成長數。',

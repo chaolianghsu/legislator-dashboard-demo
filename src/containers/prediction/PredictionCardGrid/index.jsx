@@ -7,6 +7,13 @@ import { swingDisplayMap } from '@/utils'
 import { Card, CardTitle } from '@/components'
 import contentConfig from './contentConfig'
 
+const scrollConfig = {
+  聲譽值: 'reputation',
+  互動強度: 'interaction',
+  社群互動力: 'section_three',
+  粉絲觸及力: 'section_three',
+}
+
 function PredictionCardGrid({ data }) {
   const navigate = useNavigate()
   const dataFormat = contentConfig.map((item) => {
@@ -41,12 +48,7 @@ function PredictionCardGrid({ data }) {
     }
     return item
   })
-  const scrollConfig = {
-    聲譽值: 'reputation',
-    互動強度: 'interaction',
-    社群互動力: 'section_three',
-    粉絲觸及力: 'section_three',
-  }
+
   return (
     <Grid container spacing={1}>
       {dataFormat.map((cardContent) => (

@@ -45,6 +45,7 @@ function Prediction() {
   if (isLoading || isFetching || isCompetitorsLoading || isCompetitorsFetching) {
     return <LoadingProgress />
   }
+
   return (
     <Stack spacing={2} sx={{ paddingBottom: '5rem' }}>
       <Stack direction="row" gap="1rem" justifyContent="center">

@@ -23,7 +23,7 @@ const socialAPIs = [
             ],
             series: [
               {
-                name: '社群互動數',
+                name: '社群互動力',
                 data: [
                   9661,
                   55128,

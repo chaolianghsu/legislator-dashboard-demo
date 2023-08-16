@@ -102,6 +102,7 @@ function IndecisionIndexSectionThree({ data, electoralDistrict }) {
     }
     return acc
   }, [])
+
   return (
     <Stack spacing={1} sx={{ padding: '1.5rem' }}>
       <Stack
