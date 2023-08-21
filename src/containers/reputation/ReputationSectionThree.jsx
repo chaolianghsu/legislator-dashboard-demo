@@ -75,9 +75,9 @@ function ReputationSectionThree() {
           <Grid xs={12} md={6} lg={4}>
             <Stack>
               <TitleData
-                title="粉絲成長數"
+                title="粉絲觸及力"
                 value={socialTouchTotal.toLocaleString()}
-                unit="people"
+                unit=""
               />
               <BarChart categories={categories} series={socialTouchSeries} />
             </Stack>

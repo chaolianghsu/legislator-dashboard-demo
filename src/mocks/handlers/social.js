@@ -49,7 +49,7 @@ const socialAPIs = [
             ],
             series: [
               {
-                name: '粉絲成長數',
+                name: '粉絲觸及力',
                 data: [
                   9661,
                   55128,
