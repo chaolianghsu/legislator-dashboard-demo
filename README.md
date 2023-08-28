@@ -1,41 +1,64 @@
-## Routes
+# Legislator Dashboard 2024
 
-/prediction
-/reputation
-/reputation/spread
-/reputation/volume
-/reputation/favorability
+- Show how good is the legislator
 
-## API 對應route
+## Table of Contents
 
-### /prediction
+- [Legislator Dashboard 2024](#legislator-dashboard-2024)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installing](#installing)
+  - [Deployment](#deployment)
+    - [Production Server](#production-server)
+  - [Built With](#built-with)
+  - [Authors](#authors)
 
-/main/predict_module
+## Getting Started
 
-### /reputation
+### Prerequisites
 
-/main/reputation_module
+1. Node.js
+2. google cloud sdk
 
-### /reputation/spread
+### Installing
 
-/main/diffusion
-/main/interaction
-/main/textlist
+First, clone this project and run
 
-### /reputation/volume
+```bash
+yarn install
+```
 
-/main/volume
-/main/textlist
+Add `.env`, the keys need to be filled in are all inside [`.env.example`](./.env.example). Then run
 
-### /reputation/favorbility
+```bash
+yarn dev
+```
 
-/main/favorability
-/main/textlist
+Open `http://localhost:5173` in the browser and you're all set!!
 
-### /reputation/textlist
+## Deployment
 
-/main/textlist
+### Production Server
 
-### /reputation/hotkeyword
+Open terminal and run
 
-/main/hotkeyword
+```bash
+gcloud compute ssh bignet@dv-product --zone=asia-east1-b --project dailyview-340904
+```
+
+`cd` into `FrontEnd/legislator-dashboard-2024`, pull the wanted commits and run
+
+```bash
+docker-compose up --build -d
+```
+
+## Built With
+
+- [React](https://reactjs.org)
+- [MUI](https://mui.com) - UI library for react
+
+## Authors
+
+- **Ericsen Tsai**
+- **Eddy Liao**
