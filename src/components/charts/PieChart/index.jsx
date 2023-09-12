@@ -17,11 +17,13 @@ const PieChartPropTypes = {
   ),
   chartContainerProps: PropTypes.shape({}),
   onChartPointClick: PropTypes.func,
+  totalVoterNum: PropTypes.number,
 }
 
 function PieChart({
   series,
   chartContainerProps,
+  totalVoterNum,
 }) {
   return (
     <Box {...chartContainerProps}>
@@ -29,6 +31,7 @@ function PieChart({
         highcharts={Highcharts}
         options={genPieChartOption({
           series,
+          totalVoterNum,
         })}
       />
     </Box>

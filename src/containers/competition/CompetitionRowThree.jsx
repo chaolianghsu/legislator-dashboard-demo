@@ -2,7 +2,7 @@
 import { Unstable_Grid2 as Grid, CardActions } from '@mui/material'
 import PropTypes from 'prop-types'
 import { useQuery } from '@tanstack/react-query'
-import { downloadAPI } from '@/apis'
+import { downloadAPI, swingModuleAPI } from '@/apis'
 import { downloadFile } from '@/utils'
 import {
   Card,
@@ -89,6 +89,24 @@ function CompetitionRowThree({ voterProfile, historical }) {
     startToGetOld: 0,
     old: 0,
   })
+
+  /* 此為暫時解，待api數字修改完成後將會刪除 */
+  const {
+    data: totalVoterNum,
+  } = useQuery({
+    queryKey: [swingModuleAPI.Url],
+    queryFn: () => swingModuleAPI.getData(),
+    select: (d) => d.result[0].electoral_district_data
+    ,
+  })
+  /* 此為暫時解，待api數字修改完成後將會刪除 */
+
+  const historicalChartData = Object.entries(historical).map((item) => ({
+    name: item[0],
+    data: item[1].value.map((value) => Number((value * 100).toFixed())),
+  }))
+  const previousYears = historical['國民黨'].year
+
   const data = [
     {
       data: Object.entries(displayLegend).map(([engName, chinName]) => ({
@@ -97,11 +115,7 @@ function CompetitionRowThree({ voterProfile, historical }) {
       })),
     },
   ]
-  const historicalChartData = Object.entries(historical).map((item) => ({
-    name: item[0],
-    data: item[1].value.map((value) => Number((value * 100).toFixed())),
-  }))
-  const previousYears = historical['國民黨'].year
+
   return (
     <Grid
       container
@@ -122,7 +136,7 @@ function CompetitionRowThree({ voterProfile, historical }) {
           }}
           title={<TitleData title="選民輪廓" value="" />}
         >
-          <PieChart series={data} />
+          <PieChart series={data} totalVoterNum={totalVoterNum} />
           <CardActions>
             <DetailButton
             // 要測試下載要把baseUrl換實際api url
