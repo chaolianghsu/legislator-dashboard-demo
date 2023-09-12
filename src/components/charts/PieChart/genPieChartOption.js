@@ -11,7 +11,7 @@ const genLineChartOption = ({ series, titleString = '選民總人數', totalVote
     },
     colors,
     title: {
-      text: `${totalVoterNum.toLocaleString()}<br><p/><p style="font-size:12px;">${titleString}</p>`,
+      text: `${totalVoterNum ? totalVoterNum.toLocaleString() : 0}<br><p/><p style="font-size:12px;">${titleString}</p>`,
       style: {
         color: '#829DB2',
         fontWeight: 'bold',
