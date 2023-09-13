@@ -65,6 +65,8 @@ VillageCard.propTypes = {
 }
 
 function IndecisionBlock({ swing, villages }) {
+  const sortedVillages = villages && villages.sort((a, b) => b.swing_vote - a.swing_vote)
+
   return (
     <Card>
       <Stack
@@ -96,7 +98,7 @@ function IndecisionBlock({ swing, villages }) {
           {swing}
         </Typography>
         <Grid container spacing={1} sx={{ width: '100%' }}>
-          {villages.map((village) => (
+          {sortedVillages.map((village) => (
             <Grid xs={12} lg={6} xl={4} key={village.name}>
               <VillageCard
                 name={village.name}

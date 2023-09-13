@@ -1,6 +1,7 @@
-const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
+const genLineChartOption = ({ series, titleString = '選民總人數', totalVoterNum }) => {
   const colors = ['#46BBFF', '#EA7500', '#641EFF', '#00AEAE', '#C9C9C9']
-  const total = series[0].data.reduce((sum, d) => sum + d.y, 0)
+  // const total = series[0].data.reduce((sum, d) => sum + d.y, 0)
+  /* totalVoterNum為暫時解，待api資料修改完成後將會刪除換回total */
   const options = {
     chart: {
       plotBackgroundColor: null,
@@ -10,7 +11,7 @@ const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
     },
     colors,
     title: {
-      text: `${total.toLocaleString()}<br><p/><p style="font-size:12px;">${titleString}</p>`,
+      text: `${totalVoterNum ? totalVoterNum.toLocaleString() : 0}<br><p/><p style="font-size:12px;">${titleString}</p>`,
       style: {
         color: '#829DB2',
         fontWeight: 'bold',
@@ -31,7 +32,7 @@ const genLineChartOption = ({ series, titleString = '選民總人數' }) => {
             color: '#829DB2',
           },
           formatter() {
-            return `<b>${Math.round((100 * this.y) / total)}%</b>`
+            return `<b>${Math.round((100 * this.y) / totalVoterNum)}%</b>`
           },
         },
         showInLegend: true,
